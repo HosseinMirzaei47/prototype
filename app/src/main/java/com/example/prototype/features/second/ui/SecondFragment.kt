@@ -1,4 +1,4 @@
-package com.example.prototype.ui.dashboard
+package com.example.prototype.features.second.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
