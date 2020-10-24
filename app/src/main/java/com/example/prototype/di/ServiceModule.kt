@@ -2,13 +2,13 @@ package com.example.prototype.di
 
 import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.users.services.UserApi
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,12 +26,12 @@ object ServiceModule {
     }
 
     private val client = OkHttpClient.Builder()
-        .addNetworkInterceptor(Interceptor { chain ->
+        /*.addNetworkInterceptor(Interceptor { chain ->
             val proceed = chain.proceed(request = chain.request())
             responseStatus.postValue(proceed)
             proceed
-        })
-        .addNetworkInterceptor(logging)
+        })*/
+        .addNetworkInterceptor(StethoInterceptor())
         .build()
 
     @Singleton
@@ -47,8 +47,8 @@ object ServiceModule {
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl("https://reqres.in/api/")
-            .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
     }
 
     @Singleton

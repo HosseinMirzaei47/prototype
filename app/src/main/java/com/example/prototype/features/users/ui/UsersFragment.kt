@@ -35,16 +35,18 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkForUsersListUpdate()
+    }
 
+    private fun checkForUsersListUpdate() {
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, {
             if (it.status == Status.SUCCESS) {
                 println("jalil ${it.data}")
             } else if (it.status == Status.ERROR) {
-                println("jalil error happened")
+                println("jalil Something went wrong!!!")
             }
         })
-
     }
 
 }
