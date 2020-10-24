@@ -39,7 +39,7 @@ class UsersFragment : Fragment() {
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, {
             if (it.status == Status.SUCCESS) {
-                println("jalil successful")
+                println("jalil ${it.data}")
             } else if (it.status == Status.ERROR) {
                 println("jalil error happened")
             }

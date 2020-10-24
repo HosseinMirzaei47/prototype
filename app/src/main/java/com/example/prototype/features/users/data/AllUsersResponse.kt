@@ -1,19 +1,13 @@
 package com.example.prototype.features.users.data
 
-
 import com.google.gson.annotations.SerializedName
 
 data class AllUsersResponse(
-    @SerializedName("ad")
     val ad: Ad,
     @SerializedName("data")
-    val users: List<User>,
-    @SerializedName("page")
+    val `users`: List<User>,
     val page: Int,
-    @SerializedName("per_page")
-    val perPage: Int,
-    @SerializedName("total")
+    val per_page: Int,
     val total: Int,
-    @SerializedName("total_pages")
-    val totalPages: Int
+    val total_pages: Int
 )

@@ -21,6 +21,7 @@ class UserRepository @Inject constructor(
             val request = safeApiCall { service.getAllUsers("2") }
 
             if (request.status == Status.SUCCESS) {
+                println("jalil repo ${request.data}")
                 resource = Resource.success(request.data?.users)
             } else if (request.status == Status.ERROR) {
                 resource = Resource.error("Network Error", null)
@@ -28,7 +29,6 @@ class UserRepository @Inject constructor(
         }
 
         return resource
-
     }
 
 }
