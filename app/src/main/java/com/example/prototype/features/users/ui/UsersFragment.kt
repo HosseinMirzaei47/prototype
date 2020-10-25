@@ -6,15 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
+import com.example.prototype.features.users.data.Ad
+import com.example.prototype.features.users.data.User
+import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
 
     private lateinit var binding: FragmentUsersBinding
-    lateinit var userViewModel: UsersViewModel/* by viewModels()*/
+    private lateinit var userViewModel: UsersViewModel
+
+    private val users = mutableListOf<User>()
+    private val ads = mutableListOf<Ad>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,15 +41,41 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.getAllUsers()
-        userViewModel.allUsersResult.observe(viewLifecycleOwner, {
-            if (it.status == Status.SUCCESS) {
-                println("jalil successful")
-            } else if (it.status == Status.ERROR) {
-                println("jalil error happened")
-            }
-        })
+        initFakeDataSet()
 
+        showUserRecycler(users, ads)
+
+    }
+
+    private fun showUserRecycler(users: List<User>, ads: List<Ad>) {
+        binding.usersRecycler.withModels {
+            users.forEachIndexed { index, user ->
+                userRow {
+                    id(index)
+                    user(user)
+                    ads.forEachIndexed { _, ad ->
+                        ad(ad)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initFakeDataSet() {
+        repeat(10) {
+            users.add(
+                User(
+                    "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg",
+                    "hosseinmirzaei@gmail.com",
+                    "Hossein",
+                    it,
+                    "Mirzaei"
+                )
+            )
+            ads.add(
+                Ad("Partsoftware", "We develop Android applications", "")
+            )
+        }
     }
 
 }

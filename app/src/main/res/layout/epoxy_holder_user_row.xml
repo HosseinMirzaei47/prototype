@@ -1,110 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/whiteGlobalBackground"
-    app:cardCornerRadius="@dimen/radius_normal">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="user"
+            type="com.example.prototype.features.users.data.User" />
+
+        <variable
+            name="ad"
+            type="com.example.prototype.features.users.data.Ad" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_normal">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_micro"
+        android:background="@color/whiteGlobalBackground"
+        app:cardCornerRadius="@dimen/radius_normal">
 
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_normal">
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:maxLines="1"
-            android:text="@string/hossein_mirzaei"
-            android:textColor="@color/absoluteBlack"
-            android:textSize="@dimen/text_size_h2"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/userCompany"
-            app:layout_constraintStart_toEndOf="@+id/userImage"
-            app:layout_constraintTop_toTopOf="@id/userImage" />
+            <ImageView
+                android:id="@+id/userImage"
+                imageSource="@{user.avatar}"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/userCompany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:maxLines="1"
-            android:text="@string/android_developer"
-            android:textSize="@dimen/text_size_h3"
-            app:layout_constraintBottom_toBottomOf="@id/userImage"
-            app:layout_constraintStart_toEndOf="@id/userImage"
-            app:layout_constraintTop_toBottomOf="@id/userName" />
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:maxLines="1"
+                android:text="@{user.firstName + user.lastName}"
+                android:textColor="@color/absoluteBlack"
+                android:textSize="@dimen/text_size_h2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/userCompany"
+                app:layout_constraintStart_toEndOf="@+id/userImage"
+                app:layout_constraintTop_toTopOf="@id/userImage" />
 
-        <ImageView
-            android:id="@+id/iconPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_person"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userImage"
-            app:tint="@color/absoluteBlack" />
+            <TextView
+                android:id="@+id/userCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:maxLines="1"
+                android:text="@{ad.company}"
+                android:textSize="@dimen/text_size_h3"
+                app:layout_constraintBottom_toBottomOf="@id/userImage"
+                app:layout_constraintStart_toEndOf="@id/userImage"
+                app:layout_constraintTop_toBottomOf="@id/userName" />
 
-        <ImageView
-            android:id="@+id/iconContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_contact_mail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iconPerson"
-            app:tint="@color/absoluteBlack" />
+            <ImageView
+                android:id="@+id/iconPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_person"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userImage"
+                app:tint="@color/absoluteBlack" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:maxLines="1"
-            android:text="@string/hossein_mirzaei"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/iconPerson"
-            app:layout_constraintStart_toEndOf="@id/iconPerson"
-            app:layout_constraintTop_toTopOf="@id/iconPerson" />
+            <ImageView
+                android:id="@+id/iconContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_contact_mail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconPerson"
+                app:tint="@color/absoluteBlack" />
 
-        <TextView
-            android:id="@+id/contactTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:maxLines="1"
-            android:text="@string/contact"
-            android:textColor="@color/absoluteBlack"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/iconContact"
-            app:layout_constraintStart_toEndOf="@id/iconContact"
-            app:layout_constraintTop_toTopOf="@id/iconContact" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:maxLines="1"
+                android:text="@{user.firstName + user.lastName}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/iconPerson"
+                app:layout_constraintStart_toEndOf="@id/iconPerson"
+                app:layout_constraintTop_toTopOf="@id/iconPerson" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:maxLines="1"
-            android:text="@string/email"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/iconContact"
-            app:layout_constraintStart_toEndOf="@id/contactTitle"
-            app:layout_constraintTop_toTopOf="@id/iconContact" />
+            <TextView
+                android:id="@+id/contactTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:maxLines="1"
+                android:text="@string/contact"
+                android:textColor="@color/absoluteBlack"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iconContact"
+                app:layout_constraintStart_toEndOf="@id/iconContact"
+                app:layout_constraintTop_toTopOf="@id/iconContact" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:maxLines="1"
+                android:text="@{user.email}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/iconContact"
+                app:layout_constraintStart_toEndOf="@id/contactTitle"
+                app:layout_constraintTop_toTopOf="@id/iconContact" />
 
-</com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
