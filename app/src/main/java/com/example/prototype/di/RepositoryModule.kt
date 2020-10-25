@@ -1,6 +1,7 @@
 package com.example.prototype.di
 
-import android.content.Context
+import com.example.prototype.features.home.data.AuthRepository
+import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.data.UserRepository
 import com.example.prototype.features.users.services.UserApi
 import dagger.Module
@@ -15,12 +16,17 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideUsersRepository(
-        context: Context,
-        api: UserApi
-    ): UserRepository {
+    fun provideUsersRepository(api: UserApi): UserRepository {
         return UserRepository(
-            context, api
+            api
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(api: AuthApi): AuthRepository {
+        return AuthRepository(
+            api
         )
     }
 

@@ -1,4 +1,4 @@
-package com.example.prototype
+package com.example.prototype.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.prototype.R
 import com.example.prototype.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +21,10 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_second, R.id.navigation_users
+                R.id.navigation_home,
+                R.id.navigation_login,
+                R.id.navigation_second,
+                R.id.navigation_users
             )
         )
 

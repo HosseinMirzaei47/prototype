@@ -1,5 +1,6 @@
 package com.example.prototype.di
 
+import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.services.UserApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -15,20 +16,6 @@ import javax.inject.Singleton
 @Module
 object ServiceModule {
 
-    /*private val responseStatus = MutableLiveData<Response>()
-    private var logging = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
-
-    private val client = OkHttpClient.Builder()
-        .addNetworkInterceptor(Interceptor { chain ->
-            val proceed = chain.proceed(request = chain.request())
-            responseStatus.postValue(proceed)
-            proceed
-        })
-        .addNetworkInterceptor(logging)
-        .build()*/
-
     @Singleton
     @Provides
     fun provideGsonBuilder(): Gson {
@@ -42,7 +29,6 @@ object ServiceModule {
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl("https://reqres.in/api/")
-
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
@@ -52,6 +38,14 @@ object ServiceModule {
         return retrofit
             .build()
             .create(UserApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthService(retrofit: Retrofit.Builder): AuthApi {
+        return retrofit
+            .build()
+            .create(AuthApi::class.java)
     }
 
 }
