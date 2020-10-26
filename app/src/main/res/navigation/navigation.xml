@@ -25,6 +25,8 @@
 
         <action
             android:id="@+id/action_navigation_login_to_navigation_home"
+            app:popUpTo="@id/navigation_login"
+            app:popUpToInclusive="true"
             app:destination="@id/navigation_home" />
 
     </fragment>
