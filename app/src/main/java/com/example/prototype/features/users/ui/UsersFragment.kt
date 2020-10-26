@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
-import com.example.prototype.features.home.data.AuthRequest
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.bottom_sheet.*
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -41,6 +42,7 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navView.setupWithNavController(findNavController())
 
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
@@ -56,28 +58,6 @@ class UsersFragment : Fragment() {
 
             hideProgressbar()
 
-        })
-
-        userViewModel.loginUser(
-            AuthRequest(
-                "eve.holt@reqres.in",
-                "cityslicka"
-            )
-        )
-
-        userViewModel.loginResult.observe(viewLifecycleOwner, {
-            when (it.status) {
-                Status.SUCCESS -> {
-
-                    println("jalil login successful. ")
-                }
-                Status.LOADING -> {
-                    println("jalil please wait... ")
-                }
-                Status.ERROR -> {
-                    println("jalil something went wrong!!! ")
-                }
-            }
         })
 
     }
@@ -96,6 +76,10 @@ class UsersFragment : Fragment() {
         }
     }
 
+    private fun hideProgressbar() {
+        binding.progressUsers.visibility = View.INVISIBLE
+    }
+
     private fun initFakeDataSet() {
         repeat(10) {
             users.add(
@@ -111,10 +95,6 @@ class UsersFragment : Fragment() {
                 Ad("Partsoftware", "We develop Android applications", "")
             )
         }
-    }
-
-    private fun hideProgressbar() {
-        binding.progressUsers.isVisible = false
     }
 
 }

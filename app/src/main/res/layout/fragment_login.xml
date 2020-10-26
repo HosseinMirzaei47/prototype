@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.prototype.features.users.ui.UsersViewModel" />
+            type="com.example.prototype.features.home.ui.LoginViewModel" />
 
     </data>
 
@@ -174,12 +174,12 @@
 
         <ProgressBar
             android:id="@+id/loginProgressBar"
-            app:visibleOnResult="@{viewModel.loginResult}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/loginTextFieldUsername"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleOnResult="@{viewModel.loginResult}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

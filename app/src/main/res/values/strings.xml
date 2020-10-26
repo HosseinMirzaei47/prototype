@@ -18,4 +18,5 @@
     <string name="wrongEmail">Wrong email address</string>
     <string name="enterUsername">Enter your username</string>
     <string name="infoFormatError">Username or email format error</string>
+    <string name="loginFragment">Login Fragment</string>
 </resources>

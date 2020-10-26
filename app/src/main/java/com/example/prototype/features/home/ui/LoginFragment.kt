@@ -1,16 +1,28 @@
 package com.example.prototype.features.home.ui
 
+import android.os.Bundle
+import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.prototype.R
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.example.prototype.core.resource.Status
+import com.example.prototype.databinding.FragmentLoginBinding
+import com.example.prototype.features.home.data.AuthRequest
+import dagger.hilt.android.AndroidEntryPoint
 
-/*@AndroidEntryPoint*/
-@ExperimentalCoroutinesApi
-class LoginFragment /*constructor(
-    private val settings: Settings
-)*/ : Fragment(R.layout.fragment_login) {
+@AndroidEntryPoint
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    /*private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
 
     companion object {
@@ -35,30 +47,44 @@ class LoginFragment /*constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        *//*binding = FragmentLoginBinding.inflate(layoutInflater)*//*
-        onEnterClick()
+        loginUser()
     }
 
-    private fun onEnterClick() {
-        binding.loginEnterButton.setOnClickListener {
+    private fun setUpBottomNavigation() {
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_second,
+                R.id.navigation_users
+            )
+        )
 
+        val navController = requireActivity().findNavController(R.id.navHostFragment)
+
+        setupActionBarWithNavController(
+            requireActivity() as AppCompatActivity,
+            navController,
+            appBarConfiguration
+        )
+    }
+
+    private fun loginUser() {
+        binding.loginEnterButton.setOnClickListener {
             val email = binding.loginUsername.text.toString()
             val password = binding.loginPassword.text.toString()
-
-            if (email.isValidEmail()) {
-                loginViewModel.loginUser(
-                    AuthRequest(
-                        email = email,
-                        password = password
-                    )
+            loginViewModel.loginUser(
+                AuthRequest(
+                    "eve.holt@reqres.in",
+                    "cityslicka"
                 )
-            }
+            )
         }
 
         loginViewModel.loginResult.observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.SUCCESS -> {
-                    println("jalil login successful. ")
+                    findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToNavigationHome())
+                    Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 }
                 Status.LOADING -> {
                     println("jalil please wait... ")
@@ -67,6 +93,7 @@ class LoginFragment /*constructor(
                     println("jalil something went wrong!!! ")
                 }
             }
+            binding.loginProgressBar.visibility = View.INVISIBLE
         })
     }
 
@@ -119,5 +146,5 @@ class LoginFragment /*constructor(
 
         binding.loginUsername.error = null
         return true
-    }*/
+    }
 }

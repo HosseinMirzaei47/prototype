@@ -3,14 +3,9 @@ package com.example.prototype.core
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.prototype.R
 import com.example.prototype.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        val appBarConfiguration = AppBarConfiguration(
+        /*val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_login,
@@ -33,6 +28,6 @@ class MainActivity : AppCompatActivity() {
             navController,
             appBarConfiguration
         )
-        navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController)*/
     }
 }
