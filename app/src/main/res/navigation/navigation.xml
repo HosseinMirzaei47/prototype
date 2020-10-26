@@ -18,8 +18,15 @@
         tools:layout="@layout/fragment_second" />
 
     <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.prototype.features.home.ui.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
         android:id="@+id/navigation_users"
         android:name="com.example.prototype.features.users.ui.UsersFragment"
         android:label="@string/title_users"
         tools:layout="@layout/fragment_users" />
+
 </navigation>

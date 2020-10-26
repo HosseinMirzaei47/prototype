@@ -1,6 +1,5 @@
 package com.example.prototype.di
 
-import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.users.services.UserApi
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
@@ -26,12 +25,7 @@ object ServiceModule {
     }
 
     private val client = OkHttpClient.Builder()
-        /*.addNetworkInterceptor(Interceptor { chain ->
-            val proceed = chain.proceed(request = chain.request())
-            responseStatus.postValue(proceed)
-            proceed
-        })*/
-        .addNetworkInterceptor(StethoInterceptor())
+        .addNetworkInterceptor(logging)
         .build()
 
     @Singleton
@@ -57,6 +51,14 @@ object ServiceModule {
         return retrofit
             .build()
             .create(UserApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthService(retrofit: Retrofit.Builder): AuthApi {
+        return retrofit
+            .build()
+            .create(AuthApi::class.java)
     }
 
 }

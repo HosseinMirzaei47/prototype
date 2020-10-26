@@ -9,7 +9,7 @@ inline fun <T> safeApiCall(responseFunction: () -> T): Resource<T> {
         Resource.success(responseFunction.invoke())
     } catch (e: HttpException) {
         e.printStackTrace()
-        Resource.error(e.code().toString(), null)
+        Resource.error(e.message(), null)
     } catch (e: Exception) {
         e.printStackTrace()
         Resource.error(e.message, null)

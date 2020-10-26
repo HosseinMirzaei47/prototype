@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
+import com.example.prototype.features.home.data.AuthRequest
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
@@ -18,9 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class UsersFragment : Fragment() {
 
     private lateinit var binding: FragmentUsersBinding
-    private lateinit var userViewModel: UsersViewModel
+    private val userViewModel: UsersViewModel by viewModels()
 
-    private val users = mutableListOf<User>()
+    private var users = mutableListOf<User>()
     private val ads = mutableListOf<Ad>()
 
     override fun onCreateView(
@@ -28,8 +28,6 @@ class UsersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        userViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
         binding = FragmentUsersBinding.inflate(
             inflater, container, false
@@ -43,14 +41,40 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initFakeDataSet()
+
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
-            when (resource.status) {
-                Status.SUCCESS -> resource.data?.let { users -> showUserRecycler(users, ads) }
-                Status.LOADING -> println("jalil please wait...")
+            if (resource.status == Status.SUCCESS) {
+                resource.data?.let { updatedUserList ->
+                    users = updatedUserList.toMutableList()
+                    showUserRecycler(users, ads)
+                }
+                println("jalil $resource")
+            } else if (resource.status == Status.ERROR) {
+                println("jalil ERROR")
+            }
+        })
+
+        showUserRecycler(users, ads)
+
+        userViewModel.loginUser(
+            AuthRequest(
+                "eve.holt@reqres.in",
+                "cityslicka"
+            )
+        )
+
+        userViewModel.loginResult.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    println("jalil login successful. ")
+                }
+                Status.LOADING -> {
+                    println("jalil please wait... ")
+                }
                 Status.ERROR -> {
-                    Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT)
-                        .show()
+                    println("jalil something went wrong!!! ")
                 }
             }
         })

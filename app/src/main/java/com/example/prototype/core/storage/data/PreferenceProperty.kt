@@ -13,7 +13,7 @@ class PreferenceProperty<T>(
 ) : ReadWriteProperty<Context, T> {
 
     companion object {
-        const val APP_PREF_NAME = "MyApp"
+        private const val APP_PREF_NAME = "MyApp"
         fun Context.getPreferences(): SharedPreferences =
             getSharedPreferences(APP_PREF_NAME, Context.MODE_PRIVATE)
     }

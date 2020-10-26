@@ -8,4 +8,14 @@
     <string name="todo">TODO</string>
     <string name="email">hosseinmirzaei@gmail.com</string>
     <string name="contact">Contact</string>
+    <string name="login">Login</string>
+    <string name="password_hint">Password</string>
+    <string name="username_hint">Username</string>
+    <string name="enter">Enter</string>
+    <string name="not_a_user">Not a user?</string>
+    <string name="register">Register</string>
+    <string name="enterEmail">Enter your email address</string>
+    <string name="wrongEmail">Wrong email address</string>
+    <string name="enterUsername">Enter your username</string>
+    <string name="infoFormatError">Username or email format error</string>
 </resources>
