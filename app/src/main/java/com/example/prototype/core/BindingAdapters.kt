@@ -24,7 +24,7 @@ fun setImageUrl(imageView: ImageView, imageSource: String?) {
     }
 }
 
-@BindingAdapter("visibleOnResult")
+@BindingAdapter("app:visibleOnResult")
 fun visibleOnResult(view: View, resource: Resource<*>?) {
     view.isVisible = resource?.status == Status.SUCCESS
 }

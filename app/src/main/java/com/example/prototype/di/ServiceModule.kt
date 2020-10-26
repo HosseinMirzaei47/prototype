@@ -1,9 +1,9 @@
 package com.example.prototype.di
 
+import androidx.lifecycle.MutableLiveData
+import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.services.UserApi
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,9 +31,7 @@ object ServiceModule {
     @Singleton
     @Provides
     fun provideGsonBuilder(): Gson {
-        return GsonBuilder()
-            .excludeFieldsWithoutExposeAnnotation()
-            .create()
+        return Gson()
     }
 
     @Singleton

@@ -1,5 +1,6 @@
 package com.example.prototype.di
 
+import com.example.prototype.core.storage.data.Settings
 import com.example.prototype.features.home.data.AuthRepository
 import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.data.UserRepository
@@ -24,8 +25,9 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideAuthRepository(api: AuthApi): AuthRepository {
+    fun provideAuthRepository(settings: Settings, api: AuthApi): AuthRepository {
         return AuthRepository(
+            settings,
             api
         )
     }

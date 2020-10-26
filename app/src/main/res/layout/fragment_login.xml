@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.prototype.features.home.ui.LoginViewModel" />
+            type="com.example.prototype.features.users.ui.UsersViewModel" />
 
     </data>
 
@@ -22,7 +22,7 @@
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_logo"
+            android:src="@drawable/ic_login"
             app:layout_constraintBottom_toBottomOf="@id/secondHorizontalGuide"
             app:layout_constraintEnd_toEndOf="@id/firstVerticalGuide"
             app:layout_constraintStart_toStartOf="@id/thirdVerticalGuide"
@@ -174,7 +174,7 @@
 
         <ProgressBar
             android:id="@+id/loginProgressBar"
-            visibleOnResult="@{viewModel.loginResult}"
+            app:visibleOnResult="@{viewModel.loginResult}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/loginTextFieldUsername"

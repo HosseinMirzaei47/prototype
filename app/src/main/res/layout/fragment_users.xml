@@ -2,6 +2,14 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.prototype.features.users.ui.UsersViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +27,8 @@
             tools:listitem="@layout/epoxy_holder_user_row" />
 
         <ProgressBar
+            android:id="@+id/progressUsers"
+            app:visibleOnResult="@{viewModel.allUsersResult}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.prototype.core.resource.Status
@@ -41,8 +42,6 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initFakeDataSet()
-
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
             if (resource.status == Status.SUCCESS) {
@@ -54,9 +53,10 @@ class UsersFragment : Fragment() {
             } else if (resource.status == Status.ERROR) {
                 println("jalil ERROR")
             }
-        })
 
-        showUserRecycler(users, ads)
+            hideProgressbar()
+
+        })
 
         userViewModel.loginUser(
             AuthRequest(
@@ -68,6 +68,7 @@ class UsersFragment : Fragment() {
         userViewModel.loginResult.observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.SUCCESS -> {
+
                     println("jalil login successful. ")
                 }
                 Status.LOADING -> {
@@ -110,6 +111,10 @@ class UsersFragment : Fragment() {
                 Ad("Partsoftware", "We develop Android applications", "")
             )
         }
+    }
+
+    private fun hideProgressbar() {
+        binding.progressUsers.isVisible = false
     }
 
 }
