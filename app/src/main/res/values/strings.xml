@@ -13,10 +13,11 @@
     <string name="username_hint">Username</string>
     <string name="enter">Enter</string>
     <string name="not_a_user">Not a user?</string>
-    <string name="register">Register</string>
     <string name="enterEmail">Enter your email address</string>
     <string name="wrongEmail">Wrong email address</string>
     <string name="enterUsername">Enter your username</string>
     <string name="infoFormatError">Username or email format error</string>
     <string name="loginFragment">Login Fragment</string>
+    <string name="register">Register</string>
+    <string name="email_hint">Email</string>
 </resources>
