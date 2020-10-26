@@ -6,5 +6,4 @@ import com.example.prototype.R
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
 
-
 }
