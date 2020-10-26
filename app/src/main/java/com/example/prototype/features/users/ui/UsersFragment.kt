@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
@@ -41,9 +43,17 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initFakeDataSet()
-
-        showUserRecycler(users, ads)
+        userViewModel.getAllUsers()
+        userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
+            when (resource.status) {
+                Status.SUCCESS -> resource.data?.let { users -> showUserRecycler(users, ads) }
+                Status.LOADING -> println("jalil please wait...")
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
 
     }
 

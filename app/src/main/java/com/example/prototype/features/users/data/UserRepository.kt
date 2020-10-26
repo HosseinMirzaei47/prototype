@@ -23,7 +23,7 @@ class UserRepository @Inject constructor(
                 safeApiCall { ServiceBuilder.buildService(UserApi::class.java).getAllUsers("2") }
 
             if (request.status == Status.SUCCESS) {
-                resource = Resource.success(request.data?.data)
+                resource = Resource.success(request.data?.users)
             } else if (request.status == Status.ERROR) {
                 println("jalil something went Wrong!!!!")
             }
