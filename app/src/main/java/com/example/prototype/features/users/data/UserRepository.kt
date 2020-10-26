@@ -15,8 +15,8 @@ class UserRepository @Inject constructor(
     private val service: UserApi
 ) {
 
-    suspend fun getAllUsers(): Resource<List<Data>> {
-        var resource = Resource<List<Data>>(Status.ERROR, null, null)
+    suspend fun getAllUsers(): Resource<List<User>> {
+        var resource = Resource<List<User>>(Status.ERROR, null, null)
 
         if (NetworkHelper.isOnline(MyApplication.app)) {
             val request =
