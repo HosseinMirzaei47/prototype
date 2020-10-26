@@ -22,5 +22,6 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="icon_color">#591D8F</color>
 
 </resources>
