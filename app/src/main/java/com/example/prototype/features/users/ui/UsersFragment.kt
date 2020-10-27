@@ -6,15 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.bottom_sheet.*
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -42,7 +39,6 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navView.setupWithNavController(findNavController())
 
         userViewModel.getAllUsers()
         userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->

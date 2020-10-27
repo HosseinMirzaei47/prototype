@@ -3,31 +3,47 @@ package com.example.prototype.core
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.navigation.NavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.prototype.R
 import com.example.prototype.databinding.ActivityMainBinding
+import com.example.prototype.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private var currentNavController: LiveData<NavController>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-
-        /*val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_login,
-                R.id.navigation_second,
-                R.id.navigation_users
-            )
-        )
-
-        val navController = findNavController(R.id.navHostFragment)
-        setupActionBarWithNavController(
-            navController,
-            appBarConfiguration
-        )
-        navView.setupWithNavController(navController)*/
+        setupBottomNavigationBar()
     }
+
+    private fun setupBottomNavigationBar() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
+        val navGraphIds =
+            listOf(R.navigation.home_graph, R.navigation.second_graph, R.navigation.users_graph)
+
+        val controller = bottomNavigationView.setupWithNavController(
+            navGraphIds = navGraphIds,
+            fragmentManager = supportFragmentManager,
+            containerId = R.id.nav_host_container,
+            intent = intent
+        )
+
+        controller.observe(this, { navController ->
+            /*setupActionBarWithNavController(navController)*/
+        })
+        currentNavController = controller
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return currentNavController?.value?.navigateUp() ?: false
+    }
+
 }
