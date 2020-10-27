@@ -1,15 +1,7 @@
 package com.example.prototype.core.utils
 
-import androidx.lifecycle.MutableLiveData
-import com.facebook.stetho.okhttp3.StethoInterceptor
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 object ServiceBuilder {
-    private val responseStatus = MutableLiveData<Response>()
+    /*private val responseStatus = MutableLiveData<Response>()
 
     private val client = OkHttpClient.Builder()
         .addNetworkInterceptor(Interceptor { chain ->
@@ -34,5 +26,5 @@ object ServiceBuilder {
 
     fun <T> buildService(service: Class<T>): T {
         return retrofit.create(service)
-    }
+    }*/
 }

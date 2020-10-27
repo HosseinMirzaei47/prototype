@@ -1,6 +1,5 @@
 package com.example.prototype.features.home.data
 
-import android.util.Log
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.core.resource.Status
 import com.example.prototype.core.storage.data.Settings
@@ -9,7 +8,7 @@ import com.example.prototype.features.home.services.AuthApi
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
-    private val settings: Settings,
+    private val sharedPreference: Settings,
     private val service: AuthApi
 ) {
 
@@ -27,14 +26,27 @@ class AuthRepository @Inject constructor(
             )
 
             resource = Resource.success(LoginResponse(token))
-            settings.authToken = token
+            sharedPreference.authToken = token
         }
-        Log.i("testtt",request.toString())
         return resource
     }
 
-    suspend fun registerUser() {
+    suspend fun registerUser(authRequest: AuthRequest): Resource<RegisterResponse> {
+        var resource = Resource<RegisterResponse>(Status.ERROR, null, null)
 
+        val request = safeApiCall { service.registerUser(authRequest = authRequest) }
+
+        if (request.status == Status.SUCCESS) {
+            val token = request.data?.token ?: return Resource.error(
+                "Authentication Failed",
+                null
+            )
+
+            resource = Resource.success(RegisterResponse(request.data.id, token))
+            sharedPreference.authToken = token
+        }
+
+        return resource
     }
 
 }

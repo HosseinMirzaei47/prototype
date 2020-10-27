@@ -110,5 +110,6 @@
 
     <!-- Snackbar Frame -->
     <dimen name="snackBar_frame">12dp</dimen>
+    <dimen name="register_large_top_margin">80dp</dimen>
 
 </resources>

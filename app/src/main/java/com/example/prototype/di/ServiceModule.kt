@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,6 +26,11 @@ object ServiceModule {
     }
 
     private val client = OkHttpClient.Builder()
+        .addNetworkInterceptor(Interceptor { chain ->
+            val proceed = chain.proceed(request = chain.request())
+            responseStatus.postValue(proceed)
+            proceed
+        })
         .addNetworkInterceptor(logging)
         .build()
 
