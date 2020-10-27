@@ -80,21 +80,4 @@ class UsersFragment : Fragment() {
         binding.progressUsers.visibility = View.INVISIBLE
     }
 
-    private fun initFakeDataSet() {
-        repeat(10) {
-            users.add(
-                User(
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg",
-                    "hosseinmirzaei@gmail.com",
-                    "Hossein",
-                    it,
-                    "Mirzaei"
-                )
-            )
-            ads.add(
-                Ad("Partsoftware", "We develop Android applications", "")
-            )
-        }
-    }
-
 }

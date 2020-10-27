@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.nattramn.features.user.ui.viewmodels.RegisterViewModel" />
+            type="com.example.prototype.features.home.ui.RegisterViewModel" />
 
     </data>
 
@@ -17,7 +17,7 @@
         android:background="@color/whiteBackground">
 
         <ImageView
-            android:id="@+id/img_logo"
+            android:id="@+id/partLogo"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             app:layout_constraintBottom_toBottomOf="@id/secondHorizontalGuide"
@@ -28,7 +28,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/tv_membership"
+            android:id="@+id/registerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/register_join_text_margin_top"
@@ -36,9 +36,9 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_h1"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/img_logo"
-            app:layout_constraintStart_toStartOf="@+id/img_logo"
-            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+            app:layout_constraintEnd_toEndOf="@+id/partLogo"
+            app:layout_constraintStart_toStartOf="@+id/partLogo"
+            app:layout_constraintTop_toBottomOf="@+id/partLogo" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/firstVerticalGuide"
@@ -69,7 +69,7 @@
             app:layout_constraintGuide_percent="0.15" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_family"
+            android:id="@+id/usernameLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             app:boxCornerRadiusTopStart="@dimen/radius_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_membership"
+            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/textInputIcon">
 
@@ -100,7 +100,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_email"
+            android:id="@+id/emailLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
             app:boxCornerRadiusTopStart="@dimen/radius_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_family"
+            app:layout_constraintTop_toBottomOf="@+id/usernameLayout"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/textInputIcon">
 
@@ -131,7 +131,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_pass"
+            android:id="@+id/passwordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
             app:boxCornerRadiusTopStart="@dimen/radius_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email"
+            app:layout_constraintTop_toBottomOf="@+id/emailLayout"
             app:startIconDrawable="@drawable/ic_pass"
             app:startIconTint="@color/textInputIcon">
 
@@ -162,7 +162,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_rep_pass"
+            android:id="@+id/passwordConfirmLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_pass"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
             app:startIconDrawable="@drawable/ic_rep_pass"
             app:startIconTint="@color/textInputIcon">
 
@@ -206,41 +206,43 @@
             android:textColor="@color/whiteBackground"
             android:textSize="@dimen/text_size_b1"
             app:cornerRadius="@dimen/radius_normal"
-            app:layout_constraintBottom_toTopOf="@id/tv_account"
+            app:layout_constraintBottom_toTopOf="@id/alreadyAUser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_rep_pass"
+            app:layout_constraintTop_toBottomOf="@+id/passwordConfirmLayout"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tv_account"
+            android:id="@+id/alreadyAUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="8dp"
-            android:text="Already a user?"
+            android:text="@string/already_a_user"
             android:textColor="@color/hint"
             android:textSize="@dimen/text_size_b1"
             app:layout_constraintBottom_toTopOf="@+id/guideline_text"
             app:layout_constraintEnd_toEndOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/btn_membership" />
 
-        <TextView
-            android:id="@+id/tv_enter"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_b1"
-            app:layout_constraintBottom_toBottomOf="@id/tv_account"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/alreadyAUser"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@id/tv_account" />
+            app:layout_constraintTop_toTopOf="@id/alreadyAUser" />
 
         <ProgressBar
             android:id="@+id/registerProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/et_family"
+            app:layout_constraintBottom_toTopOf="@+id/usernameLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:visibleOnResult="@{viewModel.registerResult}" />
@@ -251,7 +253,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible"
-            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintGuide_percent="0.56"
             tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Guideline

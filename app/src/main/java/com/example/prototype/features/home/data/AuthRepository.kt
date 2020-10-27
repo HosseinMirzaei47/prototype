@@ -33,4 +33,8 @@ class AuthRepository @Inject constructor(
         return resource
     }
 
+    suspend fun registerUser() {
+
+    }
+
 }

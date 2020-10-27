@@ -25,9 +25,12 @@
 
         <action
             android:id="@+id/action_navigation_login_to_navigation_home"
+            app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_login"
-            app:popUpToInclusive="true"
-            app:destination="@id/navigation_home" />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_login_to_registerFragment"
+            app:destination="@id/navigation_register" />
 
     </fragment>
 
@@ -36,5 +39,16 @@
         android:name="com.example.prototype.features.users.ui.UsersFragment"
         android:label="@string/title_users"
         tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="com.example.prototype.features.home.ui.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_register"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>
