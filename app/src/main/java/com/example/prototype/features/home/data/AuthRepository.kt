@@ -3,8 +3,8 @@ package com.example.prototype.features.home.data
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.core.resource.Status
 import com.example.prototype.core.storage.data.Settings
-import com.example.prototype.core.utils.safeApiCall
 import com.example.prototype.features.home.services.AuthApi
+import safeApiCall
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(

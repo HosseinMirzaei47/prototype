@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.services.UserApi
 import com.google.gson.Gson
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +15,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -34,7 +36,7 @@ object ServiceModule {
         .addNetworkInterceptor(logging)
         .build()
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun provideGsonBuilder(): Gson {
         return Gson()
@@ -47,31 +49,40 @@ object ServiceModule {
             .baseUrl("https://reqres.in/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
+    }*/
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+            /*.add(ApplicationJsonAdapterFactory)*/
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(
+        moshi: Moshi
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://reqres.in/api/")
+            .client(client)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
     }
 
     @Singleton
     @Provides
-    fun provideBlogService(retrofit: Retrofit.Builder): UserApi {
+    fun provideBlogService(retrofit: Retrofit): UserApi {
         return retrofit
-            .build()
             .create(UserApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit.Builder): AuthApi {
+    fun provideAuthService(retrofit: Retrofit): AuthApi {
         return retrofit
-            .build()
             .create(AuthApi::class.java)
     }
 
 }
-
-/*
-
-
-MBZ454546
-
-
-
-* */
