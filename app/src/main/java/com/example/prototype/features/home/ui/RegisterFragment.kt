@@ -65,7 +65,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             if (it.status == Status.SUCCESS) {
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT)
                     .show()
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToNavigationHome())
+                findNavController().navigate(RegisterFragmentDirections.actionNavigationRegisterToNavigationDashboard())
             } else if (it.status == Status.ERROR) {
                 Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
             }

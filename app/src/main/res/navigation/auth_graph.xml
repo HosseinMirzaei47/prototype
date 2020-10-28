@@ -6,16 +6,10 @@
     app:startDestination="@+id/navigation_login">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.prototype.features.home.ui.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_second"
-        android:name="com.example.prototype.features.second.ui.SecondFragment"
-        android:label="@string/title_second"
-        tools:layout="@layout/fragment_second" />
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.prototype.DashboardFragment"
+        android:label="@string/fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_login"
@@ -25,7 +19,7 @@
 
         <action
             android:id="@+id/action_navigation_login_to_navigation_home"
-            app:destination="@id/navigation_home"
+            app:destination="@id/navigation_dashboard"
             app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
         <action
@@ -35,19 +29,15 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_users"
-        android:name="com.example.prototype.features.users.ui.UsersFragment"
-        android:label="@string/title_users"
-        tools:layout="@layout/fragment_users" />
-    <fragment
         android:id="@+id/navigation_register"
         android:name="com.example.prototype.features.home.ui.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
+
         <action
-            android:id="@+id/action_registerFragment_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:popUpTo="@id/navigation_register"
+            android:id="@+id/action_navigation_register_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard"
+            app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
     </fragment>
 
