@@ -1,6 +1,7 @@
 package com.example.prototype.features.home.ui
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,12 +54,17 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.registerButton.setOnClickListener {
             val email = binding.registerEmail.text.toString()
             val password = binding.registerPassword.text.toString()
-            registerViewModel.registerUser(
-                AuthRequest(
-                    "eve.holt@reqres.in",
-                    "pistol"
-                )
-            )
+            val passwordConfirm = binding.registerPasswordConfirm.text.toString()
+
+            if (email.isValidEmail()) {
+                if (password == passwordConfirm) {
+                    registerViewModel.registerUser(
+                        AuthRequest(email, password)
+                        /*"eve.holt@reqres.in","pistol"*/
+                    )
+                }
+            }
+
         }
 
         registerViewModel.registerResult.observe(viewLifecycleOwner, {
@@ -76,6 +82,23 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.loginButton.setOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    private fun CharSequence?.isValidEmail(): Boolean {
+
+        if (isNullOrEmpty()) {
+            binding.registerEmail.requestFocus()
+            binding.registerEmail.error = getString(R.string.enterEmail)
+            return false
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(this).matches()) {
+            binding.registerEmail.requestFocus()
+            binding.registerEmail.error = getString(R.string.wrongEmail)
+            return false
+        }
+
+        return true
     }
 
 }

@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.prototype.R
-import com.example.prototype.databinding.FragmentHomeBinding
 import com.example.prototype.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {

@@ -1,3 +1,5 @@
+package com.example.prototype.core.utils
+
 import com.example.prototype.core.resource.Resource
 import retrofit2.HttpException
 

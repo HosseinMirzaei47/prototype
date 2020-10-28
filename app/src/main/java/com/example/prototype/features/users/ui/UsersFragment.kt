@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,12 +49,13 @@ class UsersFragment : Fragment() {
                     users = updatedUserList.toMutableList()
                     showUserRecycler(users, ads)
                 }
-                println("jalil $resource")
             } else if (resource.status == Status.ERROR) {
-                println("jalil ERROR")
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong),
+                    Snackbar.LENGTH_SHORT
+                )
             }
-
-            hideProgressbar()
 
         })
 
@@ -70,10 +73,6 @@ class UsersFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun hideProgressbar() {
-        binding.progressUsers.visibility = View.INVISIBLE
     }
 
 }

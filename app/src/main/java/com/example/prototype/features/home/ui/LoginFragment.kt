@@ -55,12 +55,14 @@ class LoginFragment : Fragment() {
         binding.loginEnterButton.setOnClickListener {
             val email = binding.loginUsername.text.toString()
             val password = binding.loginPassword.text.toString()
+
             loginViewModel.loginUser(
-                AuthRequest(
-                    "eve.holt@reqres.in",
-                    "cityslicka"
-                )
+                AuthRequest("eve.holt@reqres.in", "cityslicka")
+                /*"eve.holt@reqres.in","cityslicka"*/
             )
+            if (email.isValidEmail()) {
+            }
+
         }
 
         loginViewModel.loginResult.observe(viewLifecycleOwner, {
@@ -76,7 +78,6 @@ class LoginFragment : Fragment() {
                     println("jalil something went wrong!!! ")
                 }
             }
-            binding.loginProgressBar.visibility = View.INVISIBLE
         })
     }
 
@@ -97,37 +98,4 @@ class LoginFragment : Fragment() {
         return true
     }
 
-    private fun CharSequence?.isValidUsername(): Boolean {
-
-        if (this == null) {
-
-            binding.loginUsername.requestFocus()
-            binding.loginUsername.error = getString(R.string.enterUsername)
-            return false
-
-        }
-
-        if (isNullOrEmpty()) {
-
-            binding.loginUsername.requestFocus()
-            binding.loginUsername.error = getString(R.string.enterUsername)
-            return false
-
-        } else if (binding.loginUsername.text!!.length > minUsernameLength
-            && !Patterns.EMAIL_ADDRESS.matcher(this).matches()
-        ) {
-
-            return true
-
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(this).matches()) {
-
-            binding.loginUsername.requestFocus()
-            binding.loginUsername.error = getString(R.string.infoFormatError)
-            return false
-
-        }
-
-        binding.loginUsername.error = null
-        return true
-    }
 }

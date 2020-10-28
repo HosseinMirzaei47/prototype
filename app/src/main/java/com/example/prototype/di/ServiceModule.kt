@@ -3,7 +3,6 @@ package com.example.prototype.di
 import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.services.UserApi
-import com.google.gson.Gson
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -14,7 +13,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -35,21 +33,6 @@ object ServiceModule {
         })
         .addNetworkInterceptor(logging)
         .build()
-
-    /*@Singleton
-    @Provides
-    fun provideGsonBuilder(): Gson {
-        return Gson()
-    }
-
-    @Singleton
-    @Provides
-    fun provideRetrofit(gson: Gson): Retrofit.Builder {
-        return Retrofit.Builder()
-            .baseUrl("https://reqres.in/api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(client)
-    }*/
 
     @Provides
     @Singleton

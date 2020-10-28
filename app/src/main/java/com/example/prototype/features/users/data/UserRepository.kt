@@ -3,7 +3,7 @@ package com.example.prototype.features.users.data
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.core.resource.Status
 import com.example.prototype.features.users.services.UserApi
-import safeApiCall
+import com.example.prototype.core.utils.safeApiCall
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
