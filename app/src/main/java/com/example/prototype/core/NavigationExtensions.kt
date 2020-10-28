@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.prototype
+package com.example.prototype.core
 
 import android.content.Intent
 import android.util.SparseArray
@@ -25,6 +25,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.prototype.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -106,7 +107,8 @@ fun BottomNavigationView.setupWithNavController(
                             R.anim.nav_default_enter_anim,
                             R.anim.nav_default_exit_anim,
                             R.anim.nav_default_pop_enter_anim,
-                            R.anim.nav_default_pop_exit_anim)
+                            R.anim.nav_default_pop_exit_anim
+                        )
                         .attach(selectedFragment)
                         .setPrimaryNavigationFragment(selectedFragment)
                         .apply {
