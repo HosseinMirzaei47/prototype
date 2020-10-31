@@ -13,16 +13,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var sharedPreference: Settings
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        if (!sharedPreference.authToken.isNullOrEmpty()) {
+        /*if (!sharedPreference.authToken.isNullOrEmpty()) {
             changeGraph()
-        }
+        }*/
 
     }
 

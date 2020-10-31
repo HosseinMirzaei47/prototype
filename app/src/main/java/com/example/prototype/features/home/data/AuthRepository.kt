@@ -9,14 +9,14 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
     private val sharedPreference: Settings,
-    private val service: AuthApi
+    private val authRemoteDataSource: AuthRemoteDataSource
 ) {
 
     suspend fun loginUser(authRequest: AuthRequest): Resource<LoginResponse> {
 
         var resource: Resource<LoginResponse> = Resource<LoginResponse>(Status.ERROR, null, null)
 
-        val request = safeApiCall { service.loginUser(authRequest = authRequest) }
+        val request = authRemoteDataSource.loginUser(authRequest)
 
         if (request.status == Status.SUCCESS) {
 
@@ -34,7 +34,7 @@ class AuthRepository @Inject constructor(
     suspend fun registerUser(authRequest: AuthRequest): Resource<RegisterResponse> {
         var resource = Resource<RegisterResponse>(Status.ERROR, null, null)
 
-        val request = safeApiCall { service.registerUser(authRequest = authRequest) }
+        val request = authRemoteDataSource.registerUser(authRequest)
 
         if (request.status == Status.SUCCESS) {
             val token = request.data?.token ?: return Resource.error(

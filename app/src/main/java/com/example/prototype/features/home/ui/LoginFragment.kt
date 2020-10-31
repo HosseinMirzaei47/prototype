@@ -21,10 +21,6 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
 
-    companion object {
-        const val minUsernameLength = 7
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
