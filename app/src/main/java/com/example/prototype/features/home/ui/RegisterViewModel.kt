@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prototype.core.resource.Resource
-import com.example.prototype.features.home.data.AuthRepository
 import com.example.prototype.features.home.data.AuthRequest
 import com.example.prototype.features.home.data.RegisterResponse
+import com.example.prototype.features.home.domain.RegisterUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel @ViewModelInject constructor(
-    private val authRepository: AuthRepository
+    private val registerUserUseCase: RegisterUserUseCase
 ) : ViewModel() {
 
     private val _registerResult = MutableLiveData<Resource<RegisterResponse>>()
@@ -22,7 +22,14 @@ class RegisterViewModel @ViewModelInject constructor(
         _registerResult.value = Resource.loading(null)
 
         viewModelScope.launch(Dispatchers.IO) {
-            _registerResult.postValue(authRepository.registerUser(authRequest = authRequest))
+            val response = registerUserUseCase(authRequest)
+            val token = response.data?.token
+
+            if (token.isNullOrEmpty().not()) {
+                _registerResult.postValue(response)
+            } else {
+                _registerResult.postValue(Resource.error("Registration Failed", null))
+            }
         }
     }
 
