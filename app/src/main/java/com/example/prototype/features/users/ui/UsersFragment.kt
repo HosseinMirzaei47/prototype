@@ -46,7 +46,7 @@ class UsersFragment : Fragment() {
         userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
             if (resource.status == Status.SUCCESS) {
                 resource.data?.let { updatedUserList ->
-                    users = updatedUserList.toMutableList()
+                    users = updatedUserList.users.toMutableList()
                     showUserRecycler(users, ads)
                 }
             } else if (resource.status == Status.ERROR) {

@@ -3,6 +3,8 @@ package com.example.prototype.di
 import com.example.prototype.features.home.data.AuthRepository
 import com.example.prototype.features.home.domain.LoginUserUseCase
 import com.example.prototype.features.home.domain.RegisterUserUseCase
+import com.example.prototype.features.users.data.UserRepository
+import com.example.prototype.features.users.domain.GetUserUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +29,14 @@ object UseCaseModule {
         authRepository: AuthRepository
     ): RegisterUserUseCase {
         return RegisterUserUseCase(authRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetUsersUseCase(
+        userRepository: UserRepository
+    ): GetUserUseCase {
+        return GetUserUseCase(userRepository)
     }
 
 }
