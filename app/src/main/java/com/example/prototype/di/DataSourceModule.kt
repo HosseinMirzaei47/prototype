@@ -2,7 +2,7 @@ package com.example.prototype.di
 
 import com.example.prototype.features.home.data.AuthRemoteDataSource
 import com.example.prototype.features.home.services.AuthApi
-import com.example.prototype.features.users.data.UserRemoteDataSource
+import com.example.prototype.features.users.data.UsersRemoteDataSource
 import com.example.prototype.features.users.services.UserApi
 import dagger.Module
 import dagger.Provides
@@ -24,8 +24,8 @@ object DataSourceModule {
 
     @Singleton
     @Provides
-    fun provideUserRemoteDataSource(userApi: UserApi): UserRemoteDataSource {
-        return UserRemoteDataSource(userApi)
+    fun provideUsersRemoteDataSource(userApi: UserApi): UsersRemoteDataSource {
+        return UsersRemoteDataSource(userApi)
     }
 
 }

@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.features.users.data.AllUsersResponse
-import com.example.prototype.features.users.domain.GetUserUseCase
+import com.example.prototype.features.users.domain.GetUsersUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UsersViewModel @ViewModelInject constructor(
-    private val getUserUseCase: GetUserUseCase
+    private val getUsersUseCase: GetUsersUseCase
 ) : ViewModel() {
 
     private var _allUsersResult = MutableLiveData<Resource<AllUsersResponse>>()
@@ -22,7 +22,7 @@ class UsersViewModel @ViewModelInject constructor(
         _allUsersResult.value = Resource.loading(null)
 
         viewModelScope.launch(Dispatchers.IO) {
-            val userUseCase = getUserUseCase()
+            val userUseCase = getUsersUseCase()
             userUseCase.data?.let { response ->
                 if (response.total_pages < 0) {
                     _allUsersResult.value = Resource.error("Something went wrong", null)

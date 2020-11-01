@@ -2,12 +2,12 @@ package com.example.prototype.features.users.data
 
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(
-    private val userRemoteDataSource: UserRemoteDataSource
+class UsersRepository @Inject constructor(
+    private val usersRemoteDataSource: UsersRemoteDataSource
 ) {
 
     suspend fun getAllUsers(): AllUsersResponse? {
-        val request = userRemoteDataSource.getAllUsers()
+        val request = usersRemoteDataSource.getAllUsers()
         return request.data
     }
 

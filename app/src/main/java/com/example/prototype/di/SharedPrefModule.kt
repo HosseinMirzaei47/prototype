@@ -19,10 +19,4 @@ object SharedPrefModule {
         return Settings(MyApplication.app.getPreferences())
     }
 
-    @Singleton
-    @Provides
-    fun provideString(): String {
-        return "shit"
-    }
-
 }

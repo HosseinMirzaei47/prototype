@@ -4,7 +4,7 @@ import com.example.prototype.core.utils.safeApiCall
 import com.example.prototype.features.users.services.UserApi
 import javax.inject.Inject
 
-class UserRemoteDataSource @Inject constructor(
+class UsersRemoteDataSource @Inject constructor(
     private val service: UserApi
 ) {
 

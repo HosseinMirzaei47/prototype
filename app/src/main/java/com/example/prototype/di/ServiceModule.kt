@@ -3,7 +3,6 @@ package com.example.prototype.di
 import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.home.services.AuthApi
 import com.example.prototype.features.users.services.UserApi
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,17 +35,7 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder()
-            /*.add(ApplicationJsonAdapterFactory)*/
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(
-        moshi: Moshi
-    ): Retrofit {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://reqres.in/api/")
             .client(client)

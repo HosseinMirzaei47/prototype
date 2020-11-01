@@ -3,15 +3,15 @@ package com.example.prototype.features.users.domain
 import com.example.prototype.core.CoroutineUseCaseNoParameter
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.AllUsersResponse
-import com.example.prototype.features.users.data.UserRepository
+import com.example.prototype.features.users.data.UsersRepository
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class GetUserUseCase @Inject constructor(
-    private val userRepository: UserRepository
+class GetUsersUseCase @Inject constructor(
+    private val usersRepository: UsersRepository
 ) : CoroutineUseCaseNoParameter<AllUsersResponse>(Dispatchers.IO) {
     override suspend fun execute(): AllUsersResponse {
-        val allUsers = userRepository.getAllUsers()
+        val allUsers = usersRepository.getAllUsers()
         allUsers?.let {
             return allUsers
         }
