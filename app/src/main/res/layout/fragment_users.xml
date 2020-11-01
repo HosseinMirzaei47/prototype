@@ -20,10 +20,36 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/epoxy_holder_user_row" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieUserFragment"
+            android:layout_width="@dimen/lottieDimen"
+            android:layout_height="@dimen/lottieDimen"
+            android:layout_marginTop="@dimen/margin_large"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/box_empty" />
+
+        <TextView
+            android:id="@+id/gifSubtitleUsersFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/nothing_here"
+            app:layout_constraintEnd_toEndOf="@id/lottieUserFragment"
+            app:layout_constraintStart_toStartOf="@id/lottieUserFragment"
+            app:layout_constraintTop_toBottomOf="@id/lottieUserFragment" />
 
         <ProgressBar
             android:id="@+id/progressUsers"

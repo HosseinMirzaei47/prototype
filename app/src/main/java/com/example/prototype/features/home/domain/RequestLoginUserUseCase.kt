@@ -7,7 +7,7 @@ import com.example.prototype.features.home.data.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class LoginUserUseCase @Inject constructor(
+class RequestLoginUserUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) : CoroutineUseCase<AuthRequest, LoginResponse>(Dispatchers.IO) {
     override suspend fun execute(parameters: AuthRequest): LoginResponse {

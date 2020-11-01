@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.features.home.data.AuthRequest
 import com.example.prototype.features.home.data.LoginResponse
-import com.example.prototype.features.home.domain.LoginUserUseCase
+import com.example.prototype.features.home.domain.RequestLoginUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel @ViewModelInject constructor(
-    private val loginUseCase: LoginUserUseCase
+    private val requestLoginUseCase: RequestLoginUserUseCase
 ) : ViewModel() {
 
     private val _loginResult = MutableLiveData<Resource<LoginResponse>>()
@@ -21,7 +21,7 @@ class LoginViewModel @ViewModelInject constructor(
     fun loginUser(authRequest: AuthRequest) {
         _loginResult.value = Resource.loading(null)
         viewModelScope.launch(Dispatchers.IO) {
-            val response = loginUseCase(authRequest)
+            val response = requestLoginUseCase(authRequest)
             val token = response.data?.token
 
             if (token.isNullOrEmpty().not()) {

@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.features.home.data.AuthRequest
 import com.example.prototype.features.home.data.RegisterResponse
-import com.example.prototype.features.home.domain.RegisterUserUseCase
+import com.example.prototype.features.home.domain.RequestRegisterUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel @ViewModelInject constructor(
-    private val registerUserUseCase: RegisterUserUseCase
+    private val requestRegisterUserUseCase: RequestRegisterUserUseCase
 ) : ViewModel() {
 
     private val _registerResult = MutableLiveData<Resource<RegisterResponse>>()
@@ -22,7 +22,7 @@ class RegisterViewModel @ViewModelInject constructor(
         _registerResult.value = Resource.loading(null)
 
         viewModelScope.launch(Dispatchers.IO) {
-            val response = registerUserUseCase(authRequest)
+            val response = requestRegisterUserUseCase(authRequest)
             val token = response.data?.token
 
             if (token.isNullOrEmpty().not()) {

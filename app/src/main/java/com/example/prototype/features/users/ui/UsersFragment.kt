@@ -14,6 +14,7 @@ import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_users.*
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -62,16 +63,22 @@ class UsersFragment : Fragment() {
     }
 
     private fun showUserRecycler(users: List<User>, ads: List<Ad>) {
-        binding.usersRecycler.withModels {
-            users.forEachIndexed { index, user ->
-                userRow {
-                    id(index)
-                    user(user)
-                    ads.forEachIndexed { _, ad ->
-                        ad(ad)
+
+        if (users.isNotEmpty()) {
+            binding.usersRecycler.withModels {
+                users.forEachIndexed { index, user ->
+                    userRow {
+                        id(index)
+                        user(user)
+                        ads.forEachIndexed { _, ad ->
+                            ad(ad)
+                        }
                     }
                 }
             }
+
+            gifSubtitleUsersFragment.visibility = View.GONE
+            lottieUserFragment.visibility = View.GONE
         }
     }
 

@@ -7,7 +7,7 @@ import com.example.prototype.features.home.data.RegisterResponse
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class RegisterUserUseCase @Inject constructor(
+class RequestRegisterUserUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) : CoroutineUseCase<AuthRequest, RegisterResponse>(Dispatchers.IO) {
     override suspend fun execute(parameters: AuthRequest): RegisterResponse {
