@@ -7,6 +7,6 @@ import retrofit2.http.Query
 interface UserApi {
 
     @GET("users")
-    suspend fun getAllUsers(@Query("page") page: String): AllUsersResponse
+    suspend fun getUsers(@Query("page") page: String): AllUsersResponse
 
 }

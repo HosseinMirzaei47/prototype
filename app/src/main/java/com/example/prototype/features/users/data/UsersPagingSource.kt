@@ -13,7 +13,7 @@ class UsersPagingSource @Inject constructor(
         val position = params.key ?: USERS_STARTING_PAGE_INDEX
 
         return try {
-            val response = usersRemoteDataSource.getAllUsers()
+            val response = usersRemoteDataSource.getUsers()
             val users = response.data?.users
 
 

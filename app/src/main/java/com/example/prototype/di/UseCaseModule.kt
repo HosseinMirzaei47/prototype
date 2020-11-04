@@ -1,5 +1,6 @@
 package com.example.prototype.di
 
+import com.example.prototype.core.CoroutineDispatchers
 import com.example.prototype.features.home.data.AuthRepository
 import com.example.prototype.features.home.domain.RequestLoginUserUseCase
 import com.example.prototype.features.home.domain.RequestRegisterUserUseCase
@@ -34,9 +35,10 @@ object UseCaseModule {
     @Singleton
     @Provides
     fun provideGetUsersUseCase(
-        usersRepository: UsersRepository
+        usersRepository: UsersRepository,
+        dispatchers: CoroutineDispatchers
     ): GetUsersUseCase {
-        return GetUsersUseCase(usersRepository)
+        return GetUsersUseCase(usersRepository, dispatchers)
     }
 
 }
