@@ -40,7 +40,7 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        usersAdapter = UsersAdapter()
+        /*usersAdapter = UsersAdapter()*/
         binding.usersRecycler.apply {
             adapter = usersAdapter
         }
