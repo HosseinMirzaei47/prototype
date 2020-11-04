@@ -5,15 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.features.users.data.AllUsersResponse
+import com.example.prototype.features.users.data.UsersRepository
 import com.example.prototype.features.users.domain.GetUsersUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UsersViewModel @ViewModelInject constructor(
-    private val getUsersUseCase: GetUsersUseCase
+    private val getUsersUseCase: GetUsersUseCase,
+    usersRepository: UsersRepository
 ) : ViewModel() {
+
+    val usersPaging = usersRepository.getAllUsersPaging().cachedIn(viewModelScope)
 
     private var _allUsersResult = MutableLiveData<Resource<AllUsersResponse>>()
     val allUsersResult: LiveData<Resource<AllUsersResponse>> get() = _allUsersResult

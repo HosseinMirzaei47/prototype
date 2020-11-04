@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.prototype.R
-import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentUsersBinding
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
-import com.google.android.material.snackbar.Snackbar
+import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_users.*
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -20,8 +19,7 @@ class UsersFragment : Fragment() {
     private lateinit var binding: FragmentUsersBinding
     private val userViewModel: UsersViewModel by viewModels()
 
-    private var users = mutableListOf<User>()
-    private val ads = mutableListOf<Ad>()
+    private lateinit var usersAdapter: UsersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,28 +39,23 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.getAllUsers()
-        userViewModel.allUsersResult.observe(viewLifecycleOwner, { resource ->
-            if (resource.status == Status.SUCCESS) {
-                resource.data?.let { updatedUserList ->
-                    users = updatedUserList.users.toMutableList()
-                    showUserRecycler(users, ads)
-                }
-            } else if (resource.status == Status.ERROR) {
-                Snackbar.make(
-                    requireView(),
-                    getString(R.string.something_went_wrong),
-                    Snackbar.LENGTH_SHORT
-                )
-            }
-        })
+        usersAdapter = UsersAdapter()
+        binding.usersRecycler.apply {
+            adapter = usersAdapter
+        }
+
+        userViewModel.usersPaging.observe(viewLifecycleOwner) {
+            usersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            hideNothingFoundViews()
+        }
 
     }
 
+    /* Epoxy recyclerView implementation(doesn't use Paging 3) */
     private fun showUserRecycler(users: List<User>, ads: List<Ad>) {
         binding.usersRecycler.adapter = UsersAdapter()
 
-        /*if (users.isNotEmpty()) {
+        if (users.isNotEmpty()) {
             binding.usersRecycler.withModels {
                 users.forEachIndexed { index, user ->
                     userRow {
@@ -75,9 +68,13 @@ class UsersFragment : Fragment() {
                 }
             }
 
-            gifSubtitleUsersFragment.visibility = View.GONE
-            lottieUserFragment.visibility = View.GONE
-        }*/
+            hideNothingFoundViews()
+        }
+    }
+
+    private fun hideNothingFoundViews() {
+        gifSubtitleUsersFragment.visibility = View.GONE
+        lottieUserFragment.visibility = View.GONE
     }
 
 }

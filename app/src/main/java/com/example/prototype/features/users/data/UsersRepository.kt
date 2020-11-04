@@ -1,5 +1,8 @@
 package com.example.prototype.features.users.data
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import javax.inject.Inject
 
 class UsersRepository @Inject constructor(
@@ -10,5 +13,16 @@ class UsersRepository @Inject constructor(
         val request = usersRemoteDataSource.getAllUsers()
         return request.data
     }
+
+    fun getAllUsersPaging() =
+        Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                maxSize = 15,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { UsersPagingSource(usersRemoteDataSource) }
+        ).liveData
+
 
 }

@@ -15,19 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/whiteGlobalBackground">
 
-        <!--<com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/usersRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_small"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/epoxy_holder_user_row" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
+        <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/usersRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,6 +26,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/epoxy_holder_user_row" />
+
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/usersRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/epoxy_holder_user_row" />-->
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieUserFragment"
