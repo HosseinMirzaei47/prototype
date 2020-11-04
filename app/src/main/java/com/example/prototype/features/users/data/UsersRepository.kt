@@ -9,12 +9,7 @@ class UsersRepository @Inject constructor(
     private val usersRemoteDataSource: UsersRemoteDataSource
 ) {
 
-    suspend fun getAllUsers(): AllUsersResponse? {
-        val request = usersRemoteDataSource.getAllUsers()
-        return request.data
-    }
-
-    fun getAllUsersPaging() =
+    fun getUsers() =
         Pager(
             config = PagingConfig(
                 pageSize = 5,
@@ -23,6 +18,5 @@ class UsersRepository @Inject constructor(
             ),
             pagingSourceFactory = { UsersPagingSource(usersRemoteDataSource) }
         ).liveData
-
 
 }

@@ -8,6 +8,6 @@ class UsersRemoteDataSource @Inject constructor(
     private val service: UserApi
 ) {
 
-    suspend fun getAllUsers() = safeApiCall { service.getAllUsers(page = "2") }
+    suspend fun getUsers() = safeApiCall { service.getUsers(page = "2") }
 
 }

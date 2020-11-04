@@ -44,7 +44,7 @@ class UsersFragment : Fragment() {
             adapter = usersAdapter
         }
 
-        userViewModel.usersPaging.observe(viewLifecycleOwner) {
+        userViewModel.users.observe(viewLifecycleOwner) {
             usersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             hideNothingFoundViews()
         }
