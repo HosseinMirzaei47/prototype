@@ -25,11 +25,11 @@ class UsersAdapter : PagingDataAdapter<User, UsersViewHolder>(USER_COMPARATOR) {
 
     companion object {
         val USER_COMPARATOR = object : DiffUtil.ItemCallback<User>() {
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean =
-                oldItem == newItem
-
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean =
                 oldItem.first_name == newItem.first_name
+
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean =
+                oldItem == newItem
         }
 
     }

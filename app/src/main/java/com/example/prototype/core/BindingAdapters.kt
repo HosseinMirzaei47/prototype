@@ -16,6 +16,7 @@ fun setImageUrl(imageView: ImageView, imageSource: String?) {
     imageSource?.let {
         Glide.with(imageView.context)
             .load(imageSource)
+            .circleCrop()
             .apply(
                 RequestOptions()
                     .placeholder(R.drawable.default_profile_picture)
