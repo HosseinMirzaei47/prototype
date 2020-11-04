@@ -14,7 +14,6 @@ import com.example.prototype.core.resource.Status
 import com.example.prototype.core.storage.data.Settings
 import com.example.prototype.databinding.FragmentRegisterBinding
 import com.example.prototype.features.auth.data.AuthRequest
-import com.example.prototype.features.home.ui.RegisterFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
