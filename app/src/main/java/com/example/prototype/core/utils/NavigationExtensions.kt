@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.prototype.core
+package com.example.prototype.core.utils
 
 import android.content.Intent
 import android.util.SparseArray

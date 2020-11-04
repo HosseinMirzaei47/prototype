@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.prototype.features.home.ui.LoginFragment"
+        android:name="com.example.prototype.features.auth.ui.LoginFragment"
         android:label="@string/loginFragment"
         tools:layout="@layout/fragment_login">
 
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_register"
-        android:name="com.example.prototype.features.home.ui.RegisterFragment"
+        android:name="com.example.prototype.features.auth.ui.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
 

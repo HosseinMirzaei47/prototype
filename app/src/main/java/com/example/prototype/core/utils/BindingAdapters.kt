@@ -1,4 +1,4 @@
-package com.example.prototype.core
+package com.example.prototype.core.utils
 
 import android.view.View
 import android.widget.ImageView

@@ -1,4 +1,4 @@
-package com.example.prototype.features.home.ui
+package com.example.prototype.features.auth.ui
 
 import android.os.Bundle
 import android.util.Patterns
@@ -13,7 +13,8 @@ import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.core.storage.data.Settings
 import com.example.prototype.databinding.FragmentRegisterBinding
-import com.example.prototype.features.home.data.AuthRequest
+import com.example.prototype.features.auth.data.AuthRequest
+import com.example.prototype.features.home.ui.RegisterFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
