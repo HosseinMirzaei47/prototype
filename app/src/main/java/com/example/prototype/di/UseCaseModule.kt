@@ -1,9 +1,9 @@
 package com.example.prototype.di
 
 import com.example.prototype.core.CoroutineDispatchers
-import com.example.prototype.features.home.data.AuthRepository
-import com.example.prototype.features.home.domain.RequestLoginUserUseCase
-import com.example.prototype.features.home.domain.RequestRegisterUserUseCase
+import com.example.prototype.features.auth.data.AuthRepository
+import com.example.prototype.features.auth.domain.RequestLoginUserUseCase
+import com.example.prototype.features.auth.domain.RequestRegisterUserUseCase
 import com.example.prototype.features.users.data.UsersRepository
 import com.example.prototype.features.users.domain.GetUsersUseCase
 import dagger.Module

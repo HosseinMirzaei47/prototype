@@ -1,4 +1,4 @@
-package com.example.prototype.core
+package com.example.prototype.core.utils
 
 import com.example.prototype.core.resource.Resource
 import kotlinx.coroutines.CoroutineDispatcher

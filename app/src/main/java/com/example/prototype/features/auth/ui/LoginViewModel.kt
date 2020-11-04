@@ -1,13 +1,13 @@
-package com.example.prototype.features.home.ui
+package com.example.prototype.features.auth.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prototype.core.resource.Resource
-import com.example.prototype.features.home.data.AuthRequest
-import com.example.prototype.features.home.data.LoginResponse
-import com.example.prototype.features.home.domain.RequestLoginUserUseCase
+import com.example.prototype.features.auth.data.AuthRequest
+import com.example.prototype.features.auth.data.LoginResponse
+import com.example.prototype.features.auth.domain.RequestLoginUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

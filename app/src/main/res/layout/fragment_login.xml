@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.prototype.features.home.ui.LoginViewModel" />
+            type="com.example.prototype.features.auth.ui.LoginViewModel" />
 
     </data>
 

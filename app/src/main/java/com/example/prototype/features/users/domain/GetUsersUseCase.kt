@@ -3,7 +3,7 @@ package com.example.prototype.features.users.domain
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.example.prototype.core.CoroutineDispatchers
-import com.example.prototype.core.CoroutineUseCaseNoParameter
+import com.example.prototype.core.utils.CoroutineUseCaseNoParameter
 import com.example.prototype.features.users.data.User
 import com.example.prototype.features.users.data.UsersRepository
 import javax.inject.Inject

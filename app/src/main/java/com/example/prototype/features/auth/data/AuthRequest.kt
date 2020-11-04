@@ -1,4 +1,4 @@
-package com.example.prototype.features.home.data
+package com.example.prototype.features.auth.data
 
 import com.squareup.moshi.Json
 

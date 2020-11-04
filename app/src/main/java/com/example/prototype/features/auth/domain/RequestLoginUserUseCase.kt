@@ -1,9 +1,9 @@
-package com.example.prototype.features.home.domain
+package com.example.prototype.features.auth.domain
 
-import com.example.prototype.core.CoroutineUseCase
-import com.example.prototype.features.home.data.AuthRepository
-import com.example.prototype.features.home.data.AuthRequest
-import com.example.prototype.features.home.data.LoginResponse
+import com.example.prototype.core.utils.CoroutineUseCase
+import com.example.prototype.features.auth.data.AuthRepository
+import com.example.prototype.features.auth.data.AuthRequest
+import com.example.prototype.features.auth.data.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 

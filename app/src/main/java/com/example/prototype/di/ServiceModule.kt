@@ -1,7 +1,7 @@
 package com.example.prototype.di
 
 import androidx.lifecycle.MutableLiveData
-import com.example.prototype.features.home.services.AuthApi
+import com.example.prototype.features.auth.service.AuthApi
 import com.example.prototype.features.users.services.UserApi
 import dagger.Module
 import dagger.Provides
