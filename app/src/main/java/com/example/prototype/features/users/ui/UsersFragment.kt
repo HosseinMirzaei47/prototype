@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.prototype.databinding.FragmentUsersBinding
 import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_users.*
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -44,11 +44,19 @@ class UsersFragment : Fragment() {
             adapter = usersAdapter
         }
 
-        userViewModel.users.observe(viewLifecycleOwner) {
-            usersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
-            hideNothingFoundViews()
+        lifecycleScope.launchWhenCreated {
+            userViewModel.getUsers()?.observe(viewLifecycleOwner) {
+                usersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+                hideNothingFoundViews()
+            }
         }
 
+    }
+
+    private fun hideNothingFoundViews() {
+        binding.progressUsers.visibility = View.GONE
+        binding.gifSubtitleUsersFragment.visibility = View.GONE
+        binding.lottieUserFragment.visibility = View.GONE
     }
 
     /* Epoxy recyclerView implementation(doesn't use Paging 3) */
@@ -70,11 +78,6 @@ class UsersFragment : Fragment() {
 
             hideNothingFoundViews()
         }
-    }
-
-    private fun hideNothingFoundViews() {
-        gifSubtitleUsersFragment.visibility = View.GONE
-        lottieUserFragment.visibility = View.GONE
     }
 
 }
