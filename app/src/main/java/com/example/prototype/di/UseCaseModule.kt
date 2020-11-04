@@ -19,17 +19,19 @@ object UseCaseModule {
     @Singleton
     @Provides
     fun provideLoginUseCase(
-        authRepository: AuthRepository
+        authRepository: AuthRepository,
+        coroutineDispatchers: CoroutineDispatchers
     ): RequestLoginUserUseCase {
-        return RequestLoginUserUseCase(authRepository)
+        return RequestLoginUserUseCase(authRepository, coroutineDispatchers)
     }
 
     @Singleton
     @Provides
     fun provideRegisterUserUseCase(
-        authRepository: AuthRepository
+        authRepository: AuthRepository,
+        coroutineDispatchers: CoroutineDispatchers
     ): RequestRegisterUserUseCase {
-        return RequestRegisterUserUseCase(authRepository)
+        return RequestRegisterUserUseCase(authRepository, coroutineDispatchers)
     }
 
     @Singleton
