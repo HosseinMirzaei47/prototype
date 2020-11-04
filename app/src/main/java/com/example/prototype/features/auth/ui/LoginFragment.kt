@@ -13,7 +13,6 @@ import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentLoginBinding
 import com.example.prototype.features.auth.data.AuthRequest
-import com.example.prototype.features.home.ui.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -2,7 +2,6 @@ package com.example.prototype.features.users.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
 import javax.inject.Inject
 
 class UsersRepository @Inject constructor(
@@ -17,6 +16,6 @@ class UsersRepository @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { UsersPagingSource(usersRemoteDataSource) }
-        ).liveData
+        ).flow
 
 }

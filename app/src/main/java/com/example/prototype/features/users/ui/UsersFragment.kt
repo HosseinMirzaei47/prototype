@@ -12,6 +12,7 @@ import com.example.prototype.features.users.data.Ad
 import com.example.prototype.features.users.data.User
 import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -45,18 +46,17 @@ class UsersFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenCreated {
-            userViewModel.getUsers()?.observe(viewLifecycleOwner) {
-                usersAdapter.submitData(viewLifecycleOwner.lifecycle, it)
-                hideNothingFoundViews()
+            userViewModel.getUsers()?.collect {
+                usersAdapter.submitData(it)
             }
         }
 
     }
 
     private fun hideNothingFoundViews() {
-        binding.progressUsers.visibility = View.GONE
+        /*binding.progressUsers.visibility = View.GONE
         binding.gifSubtitleUsersFragment.visibility = View.GONE
-        binding.lottieUserFragment.visibility = View.GONE
+        binding.lottieUserFragment.visibility = View.GONE*/
     }
 
     /* Epoxy recyclerView implementation(doesn't use Paging 3) */
