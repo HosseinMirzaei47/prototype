@@ -16,8 +16,7 @@ class UsersPagingSource @Inject constructor(
             val response = usersRemoteDataSource.getUsers()
             val users = response.data?.users
 
-
-            users?.toMutableList()?.addAll(listOf())
+            /*users?.toMutableList()?.addAll(listOf())*/
 
             LoadResult.Page(
                 data = if (!users.isNullOrEmpty()) users else listOf(),
