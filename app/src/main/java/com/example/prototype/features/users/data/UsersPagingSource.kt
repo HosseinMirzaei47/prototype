@@ -13,14 +13,12 @@ class UsersPagingSource @Inject constructor(
         val position = params.key ?: USERS_STARTING_PAGE_INDEX
 
         return try {
-            val response = usersRemoteDataSource.getUsers()
+            val response = usersRemoteDataSource.getUsers(position.toString())
             val users = response.data?.users
-
-            /*users?.toMutableList()?.addAll(listOf())*/
 
             LoadResult.Page(
                 data = if (!users.isNullOrEmpty()) users else listOf(),
-                prevKey = null,
+                prevKey = if (position == USERS_STARTING_PAGE_INDEX) null else position - 1,
                 nextKey = if (users?.isEmpty()!!) null else position + 1
             )
         } catch (e: HttpException) {
