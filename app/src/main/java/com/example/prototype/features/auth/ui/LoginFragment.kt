@@ -52,17 +52,15 @@ class LoginFragment : Fragment() {
             val email = binding.loginUsername.text.toString()
             val password = binding.loginPassword.text.toString()
 
-            loginViewModel.loginUser(
-                AuthRequest("eve.holt@reqres.in", "cityslicka")
-                /*"eve.holt@reqres.in","cityslicka"*/
-            )
             if (email.isValidEmail()) {
+                loginViewModel.loginUser(
+                    AuthRequest(email, password)
+                )
             }
 
         }
 
         loginViewModel.loginResult.observe(viewLifecycleOwner, {
-            println("jalil login observer")
             when (it.status) {
                 Status.SUCCESS -> {
                     findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToNavigationHome())

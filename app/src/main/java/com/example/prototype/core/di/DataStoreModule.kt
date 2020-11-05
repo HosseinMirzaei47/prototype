@@ -1,7 +1,7 @@
-package com.example.prototype.di
+package com.example.prototype.core.di
 
 import com.example.prototype.MyApplication
-import com.example.prototype.core.storage.data.Settings
+import com.example.prototype.core.storage.Settings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

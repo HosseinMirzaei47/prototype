@@ -1,4 +1,4 @@
-package com.example.prototype.di
+package com.example.prototype.core.di
 
 import com.example.prototype.core.CoroutineDispatchers
 import dagger.Module

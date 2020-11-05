@@ -1,4 +1,4 @@
-package com.example.prototype.core.storage.data
+package com.example.prototype.core.storage
 
 import android.content.Context
 import androidx.datastore.DataStore
@@ -14,11 +14,7 @@ class Settings(context: Context) {
         it[KEY_TOKEN] = userToken ?: NO_TOKEN
     }
 
-    suspend fun clearStorage() {
-        dataStore.edit {
-            it.clear()
-        }
-    }
+    suspend fun clearStorage() = dataStore.edit { it.clear() }
 
     val userTokenFlow: Flow<String> = dataStore.data.map {
         it[KEY_TOKEN] ?: NO_TOKEN

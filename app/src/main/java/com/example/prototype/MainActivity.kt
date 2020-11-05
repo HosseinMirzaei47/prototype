@@ -21,13 +21,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        navigateToProperDestination()
+    }
 
+    private fun navigateToProperDestination() {
         lifecycleScope.launch {
-            userViewModel.hasToken().collect { token ->
+            userViewModel.getToken()?.collect { token ->
                 if (token.isNotNullOrEmpty()) changeGraph()
             }
         }
-
     }
 
     private fun changeGraph() {
