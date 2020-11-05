@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.example.prototype.databinding.ActivityMainBinding
 import com.example.prototype.features.auth.ui.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,7 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        if (userViewModel.hasToken()) changeGraph()
+
+        lifecycleScope.launch {
+            userViewModel.hasToken().collect { token ->
+                if (token.isNotNullOrEmpty()) changeGraph()
+            }
+        }
+
     }
 
     private fun changeGraph() {
@@ -28,5 +37,7 @@ class MainActivity : AppCompatActivity() {
         graph.startDestination = R.id.navigation_dashboard
         navHostFragment.navController.graph = graph
     }
+
+    private fun String.isNotNullOrEmpty() = this.isEmpty().not()
 
 }
