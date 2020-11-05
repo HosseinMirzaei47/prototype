@@ -40,18 +40,23 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        usersRecyclerSetup()
+        fetchUsers()
+    }
+
+    private fun fetchUsers() {
+        lifecycleScope.launchWhenCreated {
+            userViewModel.getUsers()?.collect {
+                usersAdapter.submitData(it)
+            }
+        }
+    }
+
+    private fun usersRecyclerSetup() {
         usersAdapter = UsersAdapter()
         binding.usersRecycler.apply {
             adapter = usersAdapter
         }
-
-        lifecycleScope.launchWhenCreated {
-            userViewModel.getUsers()?.collect {
-                usersAdapter.submitData(it)
-                println("jalil $it")
-            }
-        }
-
     }
 
     private fun hideNothingFoundViews() {

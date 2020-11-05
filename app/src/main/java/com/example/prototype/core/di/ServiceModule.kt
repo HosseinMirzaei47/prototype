@@ -1,4 +1,4 @@
-package com.example.prototype.di
+package com.example.prototype.core.di
 
 import androidx.lifecycle.MutableLiveData
 import com.example.prototype.features.auth.service.AuthApi

@@ -2,7 +2,7 @@ package com.example.prototype.features.auth.data
 
 import com.example.prototype.core.resource.Resource
 import com.example.prototype.core.resource.Status
-import com.example.prototype.core.storage.data.Settings
+import com.example.prototype.core.storage.Settings
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
@@ -34,6 +34,6 @@ class AuthRepository @Inject constructor(
         return resource.data
     }
 
-    fun hasToken() = dataStore.userTokenFlow
+    fun getToken() = dataStore.userTokenFlow
 
 }

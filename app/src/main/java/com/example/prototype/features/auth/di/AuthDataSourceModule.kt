@@ -1,9 +1,7 @@
-package com.example.prototype.di
+package com.example.prototype.features.auth.di
 
 import com.example.prototype.features.auth.data.AuthRemoteDataSource
 import com.example.prototype.features.auth.service.AuthApi
-import com.example.prototype.features.users.data.UsersRemoteDataSource
-import com.example.prototype.features.users.services.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +10,7 @@ import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
-object DataSourceModule {
+object AuthDataSourceModule {
 
     @Singleton
     @Provides
@@ -20,12 +18,6 @@ object DataSourceModule {
         service: AuthApi
     ): AuthRemoteDataSource {
         return AuthRemoteDataSource(service)
-    }
-
-    @Singleton
-    @Provides
-    fun provideUsersRemoteDataSource(userApi: UserApi): UsersRemoteDataSource {
-        return UsersRemoteDataSource(userApi)
     }
 
 }

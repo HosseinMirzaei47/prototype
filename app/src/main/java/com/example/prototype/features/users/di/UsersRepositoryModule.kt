@@ -1,4 +1,4 @@
-package com.example.prototype.di
+package com.example.prototype.features.users.di
 
 import com.example.prototype.features.users.data.UsersRemoteDataSource
 import com.example.prototype.features.users.data.UsersRepository
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
-object RepositoryModule {
+object UsersRepositoryModule {
 
     @Singleton
     @Provides

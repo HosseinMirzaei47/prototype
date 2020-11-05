@@ -41,7 +41,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         super.onViewCreated(view, savedInstanceState)
 
         onRegisterClick()
-
         onLoginClicked()
     }
 
@@ -55,7 +54,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 if (password == passwordConfirm) {
                     registerViewModel.registerUser(
                         AuthRequest(email, password)
-                        /*"eve.holt@reqres.in","pistol"*/
                     )
                 }
             }
