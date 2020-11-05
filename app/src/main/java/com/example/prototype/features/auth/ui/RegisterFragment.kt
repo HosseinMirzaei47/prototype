@@ -11,20 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.prototype.R
 import com.example.prototype.core.resource.Status
-import com.example.prototype.core.storage.data.Settings
 import com.example.prototype.databinding.FragmentRegisterBinding
 import com.example.prototype.features.auth.data.AuthRequest
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     lateinit var binding: FragmentRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
-
-    @Inject
-    lateinit var sharedPreference: Settings
 
     override fun onCreateView(
         inflater: LayoutInflater,

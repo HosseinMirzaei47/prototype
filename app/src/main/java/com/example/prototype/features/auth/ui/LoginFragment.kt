@@ -62,16 +62,15 @@ class LoginFragment : Fragment() {
         }
 
         loginViewModel.loginResult.observe(viewLifecycleOwner, {
+            println("jalil login observer")
             when (it.status) {
                 Status.SUCCESS -> {
                     findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToNavigationHome())
                     Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 }
                 Status.LOADING -> {
-                    println("jalil please wait... ")
                 }
                 Status.ERROR -> {
-                    println("jalil something went wrong!!! ")
                 }
             }
         })

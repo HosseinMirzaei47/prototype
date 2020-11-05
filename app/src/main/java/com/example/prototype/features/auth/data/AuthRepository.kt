@@ -6,7 +6,7 @@ import com.example.prototype.core.storage.data.Settings
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
-    private val sharedPreference: Settings,
+    private val dataStore: Settings,
     private val authRemoteDataSource: AuthRemoteDataSource
 ) {
 
@@ -17,7 +17,7 @@ class AuthRepository @Inject constructor(
         if (request.status == Status.SUCCESS) {
             val token = request.data?.token
             resource = Resource.success(token?.let { LoginResponse(it) })
-            sharedPreference.authToken = token
+            dataStore.storeUserToken(token)
         }
         return resource.data
     }
@@ -29,11 +29,11 @@ class AuthRepository @Inject constructor(
         if (request.status == Status.SUCCESS) {
             resource = Resource.success(request.data?.let { RegisterResponse(it.id, it.token) })
         }
-        sharedPreference.authToken = request.data?.token
+        dataStore.storeUserToken(request.data?.token)
 
         return resource.data
     }
 
-    fun hasToken() = !sharedPreference.authToken.isNullOrEmpty()
+    fun hasToken() = dataStore.userTokenFlow
 
 }
