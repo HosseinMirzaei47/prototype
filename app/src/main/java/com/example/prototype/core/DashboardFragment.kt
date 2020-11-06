@@ -41,7 +41,7 @@ class DashboardFragment : Fragment() {
             navGraphIds = navGraphIds,
             fragmentManager = childFragmentManager,
             containerId = R.id.dashboardNavHost,
-            requireActivity().intent
+            intent = requireActivity().intent
         )
     }
 

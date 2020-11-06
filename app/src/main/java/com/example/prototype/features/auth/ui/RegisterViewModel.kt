@@ -8,11 +8,13 @@ import com.example.prototype.core.resource.Resource
 import com.example.prototype.features.auth.data.AuthRequest
 import com.example.prototype.features.auth.data.RegisterResponse
 import com.example.prototype.features.auth.domain.RequestRegisterUserUseCase
+import com.example.prototype.features.auth.domain.RequestSetNextDestinationFlagUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel @ViewModelInject constructor(
-    private val requestRegisterUserUseCase: RequestRegisterUserUseCase
+    private val requestRegisterUserUseCase: RequestRegisterUserUseCase,
+    private val requestSetNextDestinationFlagUseCase: RequestSetNextDestinationFlagUseCase
 ) : ViewModel() {
 
     private val _registerResult = MutableLiveData<Resource<RegisterResponse>>()
@@ -32,5 +34,7 @@ class RegisterViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    suspend fun setDestinationFlag(flag: Boolean) = requestSetNextDestinationFlagUseCase(flag)
 
 }

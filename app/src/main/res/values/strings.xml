@@ -3,10 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_second">Second Fragment</string>
     <string name="title_users">Users</string>
-    <string name="android_developer">Android Developer</string>
-    <string name="hossein_mirzaei">Hossein Mirzaei</string>
     <string name="todo">TODO</string>
-    <string name="email">hosseinmirzaei@gmail.com</string>
     <string name="contact">Contact</string>
     <string name="login">Login</string>
     <string name="password_hint">Password</string>
@@ -15,13 +12,11 @@
     <string name="not_a_user">Not a user?</string>
     <string name="enterEmail">Enter your email address</string>
     <string name="wrongEmail">Wrong email address</string>
-    <string name="enterUsername">Enter your username</string>
-    <string name="infoFormatError">Username or email format error</string>
     <string name="loginFragment">Login Fragment</string>
     <string name="register">Register</string>
     <string name="email_hint">Email</string>
     <string name="already_a_user">Already a user?</string>
     <string name="fragment_dashboard">Fragment Dashboard</string>
-    <string name="something_went_wrong">Something went wrong!</string>
     <string name="nothing_here">Nothing here</string>
+    <string name="passwordsMismatchError">Entered passwords don\'t match! Try again.</string>
 </resources>

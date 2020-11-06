@@ -1,5 +1,6 @@
 package com.example.prototype.features.users.ui
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
@@ -8,6 +9,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.example.prototype.R
 
+@SuppressLint("NonConstantResourceId")
 @EpoxyModelClass(layout = R.layout.erro_layout)
 abstract class ErrorEpoxyModel : EpoxyModelWithHolder<ErrorEpoxyModel.Holder>() {
 

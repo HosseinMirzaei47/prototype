@@ -78,7 +78,6 @@ dependencies {
 
     /* Network */
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     /* Lottie */
     implementation "com.airbnb.android:lottie:$lottie_version"

@@ -9,7 +9,7 @@ class UsersEpoxyController : PagedListEpoxyController<User>() {
 
     private var isError: Boolean = false
 
-    var error: String? = ""
+    private var error: String? = ""
         set(value) {
             field = value?.let {
                 isError = true
@@ -23,7 +23,7 @@ class UsersEpoxyController : PagedListEpoxyController<User>() {
             }
         }
 
-    var isLoading = false
+    private var isLoading = false
         set(value) {
             field = value
             if (field) {
