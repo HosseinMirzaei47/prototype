@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentLoginBinding
 import com.example.prototype.features.auth.data.AuthRequest
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -60,9 +63,10 @@ class LoginFragment : Fragment() {
 
         }
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner, {
+        loginViewModel.loginResult.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
+                    setLoginInfo()
                     findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToNavigationHome())
                     Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 }
@@ -71,7 +75,14 @@ class LoginFragment : Fragment() {
                 Status.ERROR -> {
                 }
             }
-        })
+        }
+    }
+
+    private fun setLoginInfo() {
+        /** Show login page when this flag equals to false **/
+        lifecycleScope.launch {
+            loginViewModel.setDestinationFlag(true)
+        }
     }
 
     private fun CharSequence?.isValidEmail(): Boolean {

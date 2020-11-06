@@ -20,6 +20,7 @@ fun setImageUrl(imageView: ImageView, imageSource: String?) {
             .apply(
                 RequestOptions()
                     .placeholder(R.drawable.default_profile_picture)
+                    .circleCrop()
             )
             .into(imageView)
     }

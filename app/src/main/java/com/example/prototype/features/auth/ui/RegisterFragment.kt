@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentRegisterBinding
 import com.example.prototype.features.auth.data.AuthRequest
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -55,20 +58,34 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                     registerViewModel.registerUser(
                         AuthRequest(email, password)
                     )
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.passwordsMismatchError),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
         }
 
-        registerViewModel.registerResult.observe(viewLifecycleOwner, {
+        registerViewModel.registerResult.observe(viewLifecycleOwner) {
             if (it.status == Status.SUCCESS) {
+                setLoginInfo()
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT)
                     .show()
                 findNavController().navigate(RegisterFragmentDirections.actionNavigationRegisterToNavigationDashboard())
             } else if (it.status == Status.ERROR) {
                 Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
+    }
+
+    private fun setLoginInfo() {
+        /** Show login page when this flag equals to false **/
+        lifecycleScope.launch {
+            registerViewModel.setDestinationFlag(true)
+        }
     }
 
     private fun onLoginClicked() {
@@ -85,6 +102,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             return false
         }
 
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         if (!Patterns.EMAIL_ADDRESS.matcher(this).matches()) {
             binding.registerEmail.requestFocus()
             binding.registerEmail.error = getString(R.string.wrongEmail)
