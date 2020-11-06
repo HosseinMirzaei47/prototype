@@ -5,29 +5,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieSecond"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:scaleType="centerCrop"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/logoutButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tap_here_to_log_out"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_size_h3"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/box_empty" />
-
-        <TextView
-            android:id="@+id/gifSubtitleSecondFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:text="@string/nothing_here"
-            app:layout_constraintEnd_toEndOf="@id/lottieSecond"
-            app:layout_constraintStart_toStartOf="@id/lottieSecond"
-            app:layout_constraintTop_toBottomOf="@id/lottieSecond" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
