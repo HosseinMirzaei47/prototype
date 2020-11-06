@@ -19,4 +19,6 @@
     <string name="fragment_dashboard">Fragment Dashboard</string>
     <string name="nothing_here">Nothing here</string>
     <string name="passwordsMismatchError">Entered passwords don\'t match! Try again.</string>
+    <string name="retry">Retry</string>
+    <string name="something_went_wrong">Something went wrong!</string>
 </resources>
