@@ -1,7 +1,7 @@
 package com.example.prototype.features.users.di
 
+import com.example.prototype.features.users.data.UserApi
 import com.example.prototype.features.users.data.UsersRemoteDataSource
-import com.example.prototype.features.users.services.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

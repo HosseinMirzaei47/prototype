@@ -1,8 +1,8 @@
 package com.example.prototype.core.di
 
 import androidx.lifecycle.MutableLiveData
-import com.example.prototype.features.auth.service.AuthApi
-import com.example.prototype.features.users.services.UserApi
+import com.example.prototype.features.auth.data.AuthApi
+import com.example.prototype.features.users.data.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,7 +1,7 @@
 package com.example.prototype.features.auth.di
 
+import com.example.prototype.features.auth.data.AuthApi
 import com.example.prototype.features.auth.data.AuthRemoteDataSource
-import com.example.prototype.features.auth.service.AuthApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

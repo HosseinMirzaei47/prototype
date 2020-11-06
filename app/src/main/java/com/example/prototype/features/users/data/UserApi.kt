@@ -1,6 +1,5 @@
-package com.example.prototype.features.users.services
+package com.example.prototype.features.users.data
 
-import com.example.prototype.features.users.data.AllUsersResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
