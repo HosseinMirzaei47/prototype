@@ -1,7 +1,6 @@
 package com.example.prototype.features.auth.data
 
 import com.example.prototype.core.utils.safeApiCall
-import com.example.prototype.features.auth.service.AuthApi
 import javax.inject.Inject
 
 class AuthRemoteDataSource @Inject constructor(

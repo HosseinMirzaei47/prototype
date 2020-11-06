@@ -1,8 +1,5 @@
-package com.example.prototype.features.auth.service
+package com.example.prototype.features.auth.data
 
-import com.example.prototype.features.auth.data.AuthRequest
-import com.example.prototype.features.auth.data.LoginResponse
-import com.example.prototype.features.auth.data.RegisterResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
