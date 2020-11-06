@@ -1,13 +1,11 @@
 package com.example.prototype.features.second.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import com.example.prototype.features.second.ui.domain.RequestLogoutUserUseCase
 
-class SecondViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+class SecondViewModel @ViewModelInject constructor(
+    private val requestLogoutUserUseCase: RequestLogoutUserUseCase
+) : ViewModel() {
+    suspend fun logoutUser() = requestLogoutUserUseCase().data
 }
