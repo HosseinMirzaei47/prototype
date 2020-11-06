@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.example.prototype.databinding.FragmentUsersBinding
-import com.example.prototype.features.users.data.Ad
-import com.example.prototype.features.users.data.User
-import com.example.prototype.userRow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UsersFragment : Fragment() {
@@ -39,7 +40,7 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        onRetryClick()
         usersRecyclerSetup()
         fetchUsers()
     }
@@ -54,36 +55,25 @@ class UsersFragment : Fragment() {
 
     private fun usersRecyclerSetup() {
         usersAdapter = UsersAdapter()
+        displayLoadingState()
         binding.usersRecycler.apply {
             adapter = usersAdapter
         }
     }
 
-    private fun hideNothingFoundViews() {
-        /*binding.progressUsers.visibility = View.GONE
-        binding.gifSubtitleUsersFragment.visibility = View.GONE
-        binding.lottieUserFragment.visibility = View.GONE*/
+    private fun displayLoadingState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            usersAdapter.loadStateFlow.collectLatest { loadStates ->
+                binding.progressUsersFragment.isVisible = loadStates.refresh is LoadState.Loading
+                binding.lottieUsersFragment.isVisible = loadStates.refresh is LoadState.Error
+                binding.gifSubtitleUsersFragment.isVisible = loadStates.refresh is LoadState.Error
+                binding.retryButtonUsersFragment.isVisible = loadStates.refresh is LoadState.Error
+            }
+        }
     }
 
-    /* Epoxy recyclerView implementation(doesn't use Paging 3) */
-    private fun showUserRecycler(users: List<User>, ads: List<Ad>) {
-        binding.usersRecycler.adapter = UsersAdapter()
-
-        if (users.isNotEmpty()) {
-            binding.usersRecycler.withModels {
-                users.forEachIndexed { index, user ->
-                    userRow {
-                        id(index)
-                        user(user)
-                        ads.forEachIndexed { _, ad ->
-                            ad(ad)
-                        }
-                    }
-                }
-            }
-
-            hideNothingFoundViews()
-        }
+    private fun onRetryClick() {
+        binding.retryButtonUsersFragment.setOnClickListener { fetchUsers() }
     }
 
 }
