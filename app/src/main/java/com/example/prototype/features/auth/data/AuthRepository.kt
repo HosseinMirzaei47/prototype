@@ -34,12 +34,8 @@ class AuthRepository @Inject constructor(
         return resource.data
     }
 
-    suspend fun setNextDestinationFlag(flag: Boolean) = dataStore.setNextDestinationFlag(flag)
-
     suspend fun logOutUser() = dataStore.clearStorage()
 
     fun getToken() = dataStore.userTokenFlow
-
-    fun getNextDestinationFlag() = dataStore.nextDestinationFlag
 
 }
