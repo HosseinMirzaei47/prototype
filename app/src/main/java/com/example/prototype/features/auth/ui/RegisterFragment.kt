@@ -7,16 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.prototype.R
 import com.example.prototype.core.resource.Status
 import com.example.prototype.databinding.FragmentRegisterBinding
 import com.example.prototype.features.auth.data.AuthRequest
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -69,23 +67,15 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
         }
 
-        registerViewModel.registerResult.observe(viewLifecycleOwner) {
-            if (it.status == Status.SUCCESS) {
-                setLoginInfo()
+        registerViewModel.registerResult.observe(viewLifecycleOwner, Observer { resource ->
+            if (resource.status == Status.SUCCESS) {
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT)
                     .show()
                 findNavController().navigate(RegisterFragmentDirections.actionNavigationRegisterToNavigationDashboard())
-            } else if (it.status == Status.ERROR) {
+            } else if (resource.status == Status.ERROR) {
                 Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun setLoginInfo() {
-        /** Show login page when this flag equals to false **/
-        lifecycleScope.launch {
-            registerViewModel.setDestinationFlag(true)
-        }
+        })
     }
 
     private fun onLoginClicked() {
