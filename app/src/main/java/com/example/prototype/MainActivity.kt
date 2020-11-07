@@ -1,6 +1,7 @@
 package com.example.prototype
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        hideSystemUI()
         navigateToProperDestination()
     }
 
@@ -61,6 +63,15 @@ class MainActivity : AppCompatActivity() {
         val graph = inflater.inflate(R.navigation.auth_graph)
         graph.startDestination = R.id.navigation_dashboard
         navHostFragment.navController.graph = graph
+    }
+
+    @Suppress("DEPRECATION")
+    private fun hideSystemUI() {
+        window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_IMMERSIVE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
 }
