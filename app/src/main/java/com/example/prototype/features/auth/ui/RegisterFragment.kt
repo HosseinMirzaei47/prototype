@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.prototype.R
@@ -67,7 +66,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
         }
 
-        registerViewModel.registerResult.observe(viewLifecycleOwner, Observer { resource ->
+        registerViewModel.registerResult.observe(viewLifecycleOwner, { resource ->
             if (resource.status == Status.SUCCESS) {
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT)
                     .show()
