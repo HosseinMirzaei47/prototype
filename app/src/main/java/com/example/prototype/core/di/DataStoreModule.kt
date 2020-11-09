@@ -1,11 +1,12 @@
 package com.example.prototype.core.di
 
-import com.example.prototype.MyApplication
+import android.content.Context
 import com.example.prototype.core.storage.Settings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -14,8 +15,8 @@ object DataStoreModule {
 
     @Singleton
     @Provides
-    fun provideSharedPref(): Settings {
-        return Settings(MyApplication.app)
+    fun provideDataStore(@ApplicationContext context: Context): Settings {
+        return Settings(context)
     }
 
 }
