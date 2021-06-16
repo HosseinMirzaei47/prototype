@@ -37,8 +37,6 @@ class UsersFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
-        println("jalil oncreateView")
-
         return binding.root
     }
 
@@ -46,28 +44,7 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         onRetryClick()
         usersRecyclerSetup()
-        println("jalil onCteate")
         fetchUsers()
-    }
-
-    override fun onDestroyView() {
-        println("jalil onDestroyView")
-        super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        println("jalil onDestroy")
-        super.onDestroy()
-    }
-
-    override fun onStop() {
-        println("jalil onStop")
-        super.onStop()
-    }
-
-    override fun onResume() {
-        println("jalil onResume")
-        super.onResume()
     }
 
     private fun fetchUsers() {
