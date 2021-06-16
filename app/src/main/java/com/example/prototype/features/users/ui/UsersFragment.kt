@@ -8,7 +8,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.prototype.R
 import com.example.prototype.databinding.FragmentUsersBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -35,6 +37,8 @@ class UsersFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
+        println("jalil oncreateView")
+
         return binding.root
     }
 
@@ -42,7 +46,28 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         onRetryClick()
         usersRecyclerSetup()
+        println("jalil onCteate")
         fetchUsers()
+    }
+
+    override fun onDestroyView() {
+        println("jalil onDestroyView")
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        println("jalil onDestroy")
+        super.onDestroy()
+    }
+
+    override fun onStop() {
+        println("jalil onStop")
+        super.onStop()
+    }
+
+    override fun onResume() {
+        println("jalil onResume")
+        super.onResume()
     }
 
     private fun fetchUsers() {
@@ -54,7 +79,8 @@ class UsersFragment : Fragment() {
     }
 
     private fun usersRecyclerSetup() {
-        usersAdapter = UsersAdapter()
+        usersAdapter =
+            UsersAdapter { findNavController().navigate(R.id.action_usersFragment_to_fragmentTest) }
         displayLoadingState()
         binding.usersRecycler.apply {
             adapter = usersAdapter

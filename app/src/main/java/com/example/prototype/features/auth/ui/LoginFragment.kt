@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentLoginBinding.inflate(
             inflater, container, false
@@ -44,7 +44,24 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigateToProperDestination()
-        loginUser()
+
+        binding.loginEnterButton.setOnClickListener {
+            val email = binding.loginUsername.text.toString()
+            val password = binding.loginPassword.text.toString()
+
+            if (email.isValidEmail()) {
+                loginViewModel.loginUser(
+                    AuthRequest(email, password)
+                )
+            }
+        }
+
+        loginViewModel.loginResult.observe(viewLifecycleOwner, {
+            if (it.status == Status.SUCCESS) {
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+            }
+        })
+
         onRegisterClick()
     }
 
@@ -64,26 +81,6 @@ class LoginFragment : Fragment() {
         binding.loginRegisterButton.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToRegisterFragment())
         }
-    }
-
-    private fun loginUser() {
-        binding.loginEnterButton.setOnClickListener {
-            val email = binding.loginUsername.text.toString()
-            val password = binding.loginPassword.text.toString()
-
-            if (email.isValidEmail()) {
-                loginViewModel.loginUser(
-                    AuthRequest(email, password)
-                )
-            }
-
-        }
-
-        loginViewModel.loginResult.observe(viewLifecycleOwner, {
-            if (it.status == Status.SUCCESS) {
-                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun CharSequence?.isValidEmail(): Boolean {
