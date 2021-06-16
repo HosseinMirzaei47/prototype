@@ -8,7 +8,9 @@ import com.example.prototype.databinding.EpoxyHolderUserRowBinding
 import com.example.prototype.features.users.data.User
 import com.example.prototype.features.users.data.UsersViewHolder
 
-class UsersAdapter : PagingDataAdapter<User, UsersViewHolder>(USER_COMPARATOR) {
+class UsersAdapter(
+    private val action: () -> Unit
+) : PagingDataAdapter<User, UsersViewHolder>(USER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding = EpoxyHolderUserRowBinding.inflate(
@@ -20,6 +22,7 @@ class UsersAdapter : PagingDataAdapter<User, UsersViewHolder>(USER_COMPARATOR) {
     }
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
+        holder.binding.iconPerson.setOnClickListener { action() }
         holder.binding.user = getItem(position)
     }
 

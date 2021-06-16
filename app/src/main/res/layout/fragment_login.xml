@@ -24,7 +24,6 @@
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_logo"
             app:layout_constraintBottom_toBottomOf="@id/secondHorizontalGuide"
             app:layout_constraintEnd_toEndOf="@id/firstVerticalGuide"
             app:layout_constraintStart_toStartOf="@id/thirdVerticalGuide"

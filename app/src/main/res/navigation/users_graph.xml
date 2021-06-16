@@ -9,5 +9,13 @@
         android:id="@+id/usersFragment"
         android:name="com.example.prototype.features.users.ui.UsersFragment"
         android:label="UsersFragment"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users">
+        <action
+            android:id="@+id/action_usersFragment_to_fragmentTest"
+            app:destination="@id/fragmentTest" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTest"
+        android:name="com.example.prototype.features.users.ui.FragmentTest"
+        android:label="FragmentTest" />
 </navigation>

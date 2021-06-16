@@ -16,6 +16,13 @@
         android:layout_height="match_parent"
         android:background="@color/whiteGlobalBackground">
 
+        <EditText
+            android:id="@+id/kir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/usersRecycler"
             android:layout_width="match_parent"
@@ -25,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kir"
             tools:listitem="@layout/epoxy_holder_user_row" />
 
         <ProgressBar
@@ -71,7 +78,6 @@
             android:textAllCaps="false"
             android:textSize="@dimen/text_size_b1"
             android:textStyle="bold"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gifSubtitleUsersFragment" />
