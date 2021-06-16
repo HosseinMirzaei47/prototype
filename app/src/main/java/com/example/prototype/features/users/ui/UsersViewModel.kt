@@ -8,9 +8,4 @@ class UsersViewModel @ViewModelInject constructor(
     private val getUsersUseCase: GetUsersUseCase
 ) : ViewModel() {
     suspend fun getUsers() = getUsersUseCase().data
-
-    override fun onCleared() {
-        println("jalil ViewModelCleared")
-        super.onCleared()
-    }
 }
